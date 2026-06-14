@@ -1,0 +1,270 @@
+/* query-books.css - Book query page styles (confirmed mint green background and white cards) */
+
+/* 1. Global and background */
+body {
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  /* Confirmation: 浅蓝色背景 */
+  background-color: #e3f2fd;
+  background-image: url('../Images/school.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  color: #333;
+  min-height: 100vh;
+}
+
+/* 2. Top bar (Header) */
+h1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
+  background-color: rgba(187, 222, 251, 0.9); /* 更深一些的蓝色，带透明度 */
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  backdrop-filter: blur(5px); /* 添加模糊效果 */
+}
+
+/* Top title text container (requires HTML cooperation) */
+.header-title {
+  padding-left: 230px;
+  display: flex;
+  align-items: center;
+}
+
+/* Logo styles */
+.logo {
+  height: 40px;
+  vertical-align: middle;
+  margin-right: 15px;
+}
+
+/* 3. Top user info and logout button - Ensure admin Zhang is visible */
+.user-info {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 60px;
+  z-index: 101;
+  background-color: rgba(187, 222, 251, 0.9); /* 与顶部栏保持一致 */
+  padding-right: 30px;
+  font-size: 14px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 250px;
+  box-sizing: border-box;
+  backdrop-filter: blur(5px); /* 添加模糊效果 */
+}
+
+.user-info p {
+  margin: 0;
+  padding-right: 15px;
+}
+
+.user-info button {
+  background-color: #f56c6c;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.3s ease;
+}
+
+.user-info button:hover {
+  background-color: #e74c3c;
+}
+
+/* 4. Sidebar menu (Menu) - Blue background */
+.menu {
+  width: 200px;
+  background-color: rgba(105, 173, 232, 0.9); /* 带透明度的蓝色背景 */
+  color: white;
+  padding-top: 60px;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  box-sizing: border-box;
+  overflow-y: auto;
+  backdrop-filter: blur(5px); /* 添加模糊效果 */
+}
+
+.menu h2 {
+  display: none;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li a {
+  display: block;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  font-weight: bold; /* 加粗菜单文字 */
+  transition: background-color 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.menu li a:hover {
+  background-color: rgba(25, 118, 210, 0.8); /* 悬停时稍深的蓝色，带透明度 */
+  color: #ffffff;
+}
+
+/* Current active menu item */
+.menu li a[href="query-books.html"] {
+  background-color: rgba(13, 71, 161, 0.8); /* 活动项更深的蓝色，带透明度 */
+  color: #ffffff;
+  font-weight: bold;
+  border-left: 3px solid #ffffff;
+}
+
+/* 5. Main content area */
+.content-wrapper {
+  margin-left: 200px;
+  padding: 20px 30px;
+  width: calc(100% - 200px);
+  box-sizing: border-box;
+  padding-top: 80px;
+}
+
+/* 6. Form/table container (white card) - Centered style */
+.form-container,
+.table-container {
+  background-color: rgba(255, 255, 255, 0.9); /* 白色背景，带有一些透明度 */
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+
+  /* Centering settings */
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-container h2,
+.table-container h2 {
+  font-size: 20px;
+  color: #303133;
+  border-left: 4px solid #409eff; /* Blue indicator bar */
+  padding-left: 10px;
+  padding-bottom: 5px;
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+/* 7. Form element styles */
+#searchForm p {
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+}
+
+#searchForm label {
+  font-weight: normal;
+  color: #606266;
+  width: 120px;
+  flex-shrink: 0;
+  text-align: right;
+  padding-right: 15px;
+  font-size: 14px;
+}
+
+#searchForm input[type="text"],
+#searchForm select {
+  flex-grow: 1;
+  padding: 8px 15px;
+  border: 1px solid #ccc; /* 改为灰色边框 */
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 0;
+  transition: border-color 0.3s ease;
+}
+
+#searchForm input[type="text"]:focus,
+#searchForm select:focus {
+  border-color: #999; /* 聚焦时显示深灰色 */
+  box-shadow: 0 0 0 2px rgba(153, 153, 153, 0.2); /* 聚焦时的阴影也改为灰色 */
+  outline: none;
+}
+
+/* 8. Submit button style */
+#searchForm input[type="submit"] {
+  display: block;
+  width: 120px;
+  padding: 10px 15px;
+  background-color: #67c23a; /* Blue button */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 20px auto 0 auto;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#searchForm input[type="submit"]:hover {
+  background-color: #3a8ee6;
+}
+
+/* 9. Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+  table-layout: fixed;
+}
+
+thead {
+  background-color: #f5f7fa;
+  color: #909399;
+}
+
+th {
+  padding: 12px 10px;
+  font-weight: 600;
+  border-bottom: 1px solid #ebeef5;
+}
+
+td {
+  padding: 12px 10px;
+  color: #606266;
+  border-bottom: 1px solid #ebeef5;
+  word-wrap: break-word;
+}
+
+/* Status column style */
+td:nth-child(6) {
+  font-weight: 500;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}

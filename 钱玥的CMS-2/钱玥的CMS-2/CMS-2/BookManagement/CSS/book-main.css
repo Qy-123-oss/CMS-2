@@ -1,0 +1,431 @@
+
+/* Global background with pure light blue color */
+body {
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #e3f2fd; /* 浅蓝色背景 */
+  margin: 0;
+  padding: 0;
+  color: #333;
+  min-height: 100vh;
+}
+
+/* Top bar (Header) */
+h1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
+  background-color: rgba(187, 222, 251, 0.9); /* 更深一些的蓝色，带透明度 */
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  backdrop-filter: blur(5px); /* 添加模糊效果 */
+}
+
+/* Top title text container */
+.header-title {
+  padding-left: 230px; /* Space for sidebar + 30px spacing */
+  display: flex;
+  align-items: center;
+}
+
+/* Top user info and logout button */
+.user-info {
+  position: static;
+  padding-right: 30px;
+  font-size: 14px;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+.user-info p {
+  margin: 0;
+  padding-right: 15px;
+}
+
+.user-info button {
+  background-color: #f56c6c;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.3s ease;
+}
+
+.user-info button:hover {
+  background-color: #e74c3c;
+}
+
+/* Sidebar menu (Menu) */
+.menu {
+  width: 200px;
+  background-color: rgba(105, 172, 230, 0.9); /* 更柔和的蓝色，带透明度 */
+  color: white;
+  padding-top: 60px;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  box-sizing: border-box;
+  overflow-y: auto;
+  backdrop-filter: blur(5px); /* 添加模糊效果 */
+}
+
+.menu h2 {
+  display: none;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li a {
+  display: block;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  font-weight: bold; /* 加粗菜单文字 */
+  transition: background-color 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.menu li a:hover {
+  background-color: rgba(25, 118, 210, 0.8); /* 悬停时稍深的蓝色，带透明度 */
+  color: #ffffff;
+}
+
+.menu li a.active {
+  background-color: rgba(21, 101, 192, 0.8); /* 活动项更深的蓝色，带透明度 */
+  color: #ffffff;
+  font-weight: bold;
+  border-left: 3px solid #ffffff;
+}
+
+/* Content wrapper styles */
+.content-wrapper {
+  margin-left: 200px;
+  padding: 20px 0; /* 移除左右内边距 */
+  width: calc(100% - 200px);
+  box-sizing: border-box;
+  margin-top: 60px;
+  padding-top: 20px;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* Navigation section styles */
+.navigation-section {
+  margin-top: 30px;
+}
+
+.navigation-section h3 {
+  font-size: 18px;
+  color: #303133;
+  border-left: 4px solid #2196f3;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-weight: 500;
+  }
+
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.nav-card {
+  background-color: rgba(187, 222, 251, 0.8);
+  border-radius: 8px;
+  text-align: center;
+  padding: 20px 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(5px); /* 添加毛玻璃效果 */
+}
+
+.nav-card:hover {
+  background-color: rgba(33, 150, 243, 0.9);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.nav-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.nav-text {
+  font-size: 14px;
+  color: #606266;
+  font-weight: bold; /* 加粗导航文字 */
+}
+
+.nav-card:hover .nav-text {
+  color: #bbdefb;
+}
+
+/* Logo styles */
+.logo {
+  height: 40px;
+  vertical-align: middle;
+  margin-right: 15px;
+}
+
+/* Welcome title styles */
+.welcome-title {
+  font-size: 28px;
+  color: #303133;
+  text-align: center;
+  margin: 20px 0 30px 0;
+  font-weight: 600;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Video container styles */
+.intro-video-container {
+  margin: 20px 0;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(5px); /* 毛玻璃效果 */
+  padding: 10px 30px;
+}
+
+/* Introduction content styles */
+.intro-content {
+  margin-bottom: 30px;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(5px); /* 毛玻璃效果 */
+  padding: 20px 30px;
+  border-radius: 4px;
+}
+
+.intro-content p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #606266;
+  margin-bottom: 15px;
+}
+
+.intro-content h3 {
+  font-size: 18px;
+  color: #303133;
+  border-left: 4px solid #2196f3;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.intro-content ul {
+  padding-left: 20px;
+}
+
+.intro-content li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+/* Table container styles */
+.table-container {
+  background-color: rgba(255, 255, 255, 0.8); /* 半透明白色背景 */
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin: 0 auto 30px auto;
+  max-width: 100%; /* 移除最大宽度限制 */
+  backdrop-filter: blur(5px); /* 毛玻璃效果 */
+}
+
+/* School image styles */
+.school-image-container {
+  margin-left: 200px; /* 与侧边栏对齐 */
+  padding: 0; /* 移除左右内边距 */
+  text-align: center;
+  margin-top: 60px; /* 与导航栏高度一致 */
+  overflow: hidden;
+  width: calc(100% - 200px); /* 确保宽度正确 */
+  box-sizing: border-box;
+  margin-bottom: 20px; /* 与下方内容保持间距 */
+}
+
+.school-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0; /* 移除圆角 */
+  box-shadow: none; /* 移除阴影 */
+  margin-top: 0;
+  margin-bottom: 0;
+  display: block;
+  max-height: 300px; /* 控制图片最大高度 */
+  object-fit: cover; /* 填充容器 */
+  object-position: center;
+  width: 100%;
+}
+
+/* Home page soft visual refresh */
+body {
+  background:
+    linear-gradient(135deg, #f7fcff 0%, #edf8ff 34%, #f6f2ff 66%, #fff8ed 100%);
+}
+
+.content-wrapper {
+  background: transparent;
+}
+
+.table-container {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.92) 0%, rgba(242, 250, 255, 0.9) 56%, rgba(255, 250, 239, 0.88) 100%);
+  border: 1px solid rgba(151, 190, 202, 0.24);
+  border-radius: 8px;
+  box-shadow: 0 18px 44px rgba(65, 118, 136, 0.12);
+}
+
+.table-container > h2 {
+  margin: 0 0 26px 0;
+  color: #243943;
+  font-size: 28px;
+  line-height: 1.25;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.intro-content {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 250, 255, 0.76) 58%, rgba(255, 247, 234, 0.72) 100%);
+  border: 1px solid rgba(160, 198, 210, 0.22);
+  border-radius: 8px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.78);
+}
+
+.intro-content p {
+  color: #556973;
+  font-size: 17px;
+  line-height: 1.82;
+}
+
+.intro-content h3 {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  color: #24444e;
+  border-left-color: #5cb7a8;
+  font-size: 20px;
+  font-weight: 750;
+  background: linear-gradient(90deg, rgba(232, 255, 248, 0.72), rgba(255, 255, 255, 0));
+}
+
+.intro-content ol {
+  margin: 18px 0 22px 0;
+  padding-left: 34px;
+}
+
+.intro-content li {
+  color: #3f4f57;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.intro-content strong {
+  color: #243943;
+  font-weight: 800;
+}
+
+/* Home introduction background and soft emphasis */
+body:not(.bm-login-body) .content-wrapper .table-container {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(236, 249, 255, 0.9) 36%, rgba(248, 244, 255, 0.86) 68%, rgba(255, 250, 238, 0.88) 100%);
+}
+
+body:not(.bm-login-body) .content-wrapper .intro-content {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(238, 251, 255, 0.78) 50%, rgba(255, 248, 236, 0.72) 100%);
+}
+
+.table-container > h2,
+.intro-content h3,
+.intro-content strong {
+  text-shadow:
+    0 0 10px rgba(126, 216, 208, 0.35),
+    0 0 24px rgba(255, 220, 154, 0.22),
+    0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.intro-content strong {
+  color: #1f3e49;
+}
+
+/* Home intro frame */
+body:not(.bm-login-body) .content-wrapper .table-container {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(238, 250, 255, 0.82) 42%, rgba(255, 249, 238, 0.84) 100%);
+}
+
+body:not(.bm-login-body) .content-wrapper .intro-content {
+  position: relative;
+  overflow: hidden;
+  padding: 34px 52px;
+  border: 2px solid rgba(202, 157, 63, 0.82);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(239, 252, 255, 0.78) 50%, rgba(255, 249, 237, 0.82) 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 245, 199, 0.9),
+    inset 0 0 0 8px rgba(210, 166, 72, 0.11),
+    0 16px 34px rgba(92, 126, 137, 0.12);
+}
+
+body:not(.bm-login-body) .content-wrapper .intro-content::before {
+  content: '';
+  position: absolute;
+  inset: 13px;
+  pointer-events: none;
+  border: 1px solid rgba(184, 137, 44, 0.58);
+  border-radius: 5px;
+}
+
+body:not(.bm-login-body) .content-wrapper .intro-content::after {
+  content: '';
+  position: absolute;
+  inset: 9px;
+  pointer-events: none;
+  opacity: 0.78;
+  background:
+    radial-gradient(circle at 26px 26px, transparent 0 17px, rgba(195, 143, 43, 0.78) 18px 20px, transparent 21px) left top / 86px 86px no-repeat,
+    radial-gradient(circle at calc(100% - 26px) 26px, transparent 0 17px, rgba(195, 143, 43, 0.78) 18px 20px, transparent 21px) right top / 86px 86px no-repeat,
+    radial-gradient(circle at 26px calc(100% - 26px), transparent 0 17px, rgba(195, 143, 43, 0.78) 18px 20px, transparent 21px) left bottom / 86px 86px no-repeat,
+    radial-gradient(circle at calc(100% - 26px) calc(100% - 26px), transparent 0 17px, rgba(195, 143, 43, 0.78) 18px 20px, transparent 21px) right bottom / 86px 86px no-repeat,
+    linear-gradient(90deg, transparent 0 48px, rgba(216, 173, 82, 0.44) 48px calc(100% - 48px), transparent calc(100% - 48px)) top / 100% 2px no-repeat,
+    linear-gradient(90deg, transparent 0 48px, rgba(216, 173, 82, 0.44) 48px calc(100% - 48px), transparent calc(100% - 48px)) bottom / 100% 2px no-repeat,
+    linear-gradient(180deg, transparent 0 48px, rgba(216, 173, 82, 0.44) 48px calc(100% - 48px), transparent calc(100% - 48px)) left / 2px 100% no-repeat,
+    linear-gradient(180deg, transparent 0 48px, rgba(216, 173, 82, 0.44) 48px calc(100% - 48px), transparent calc(100% - 48px)) right / 2px 100% no-repeat;
+}

@@ -1,0 +1,239 @@
+/* add-book.css - Final revised version (admin display and card centering) */
+
+/* 1. Global styles and reset */
+body {
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  /* 浅蓝色背景 */
+  background-color: #e3f2fd;
+  background-image: url('../Images/school.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  color: #333;
+
+  min-height: 100vh;
+}
+
+/* 2. Top bar (Header) */
+h1 {
+  position: fixed;
+  top: 0;
+  left: 0; /* Start from the far left */
+  right: 0;
+  height: 60px;
+  z-index: 100; /* Ensure it's on top */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0; /* Remove padding on h1 */
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
+  background-color: rgba(187, 222, 251, 0.9); /* 更深一些的蓝色，带透明度 */
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  backdrop-filter: blur(5px);
+}
+
+/* Top title text container */
+.header-title {
+  padding-left: 230px; /* Space for sidebar + 30px spacing */
+  display: flex;
+  align-items: center;
+}
+
+/* Logo styles */
+.logo {
+  height: 40px;
+  vertical-align: middle;
+  margin-right: 15px;
+}
+
+/* 3. Top user info and logout button (Admin Info) */
+.user-info {
+  /* 修正：确保在 h1 容器内右侧显示 */
+  position: static;
+  padding-right: 30px; /* Increase right spacing */
+  font-size: 14px;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+.user-info p {
+  margin: 0;
+  padding-right: 15px;
+}
+
+.user-info button {
+  background-color: #f56c6c;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.user-info button:hover {
+  background-color: #e74c3c;
+}
+
+/* 4. Sidebar menu (Menu) - 更柔和的蓝色背景 */
+.menu {
+  width: 200px;
+  background-color: rgba(105, 172, 230, 0.9); /* 更柔和的蓝色，带透明度 */
+  color: white;
+  padding-top: 60px; /* Start below the top bar */
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  height: 100%;
+  top: 0; /* Fixed from the top */
+  left: 0;
+  z-index: 50;
+  overflow-y: auto;
+  backdrop-filter: blur(5px); /* 添加模糊效果 */
+}
+
+.menu h2 {
+  display: none;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li a {
+  display: block;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  font-weight: bold; /* 加粗菜单文字 */
+}
+
+.menu li a:hover {
+  background-color: rgba(25, 118, 210, 0.8); /* 悬停时稍深的蓝色，带透明度 */
+  color: #ffffff;
+}
+
+.menu li a[href="add-book.html"] {
+  background-color: rgba(21, 101, 192, 0.8); /* 活动项更深的蓝色，带透明度 */
+  color: #ffffff;
+  font-weight: bold;
+  border-left: 3px solid #ffffff;
+}
+
+/* 5. 主内容区域 - 修正布局，确保为 form-container 留出空间并允许居中 */
+.content-wrapper {
+  margin-left: 200px; /* 侧边栏宽度 */
+  padding: 20px 30px; /* 调整水平内边距以适应较小的卡片 */
+  width: calc(100% - 200px); /* 占据剩余全部宽度 */
+  box-sizing: border-box;
+  padding-top: 80px; /* 顶部横栏高度 */
+  min-height: calc(100vh - 60px); /* 确保内容区高度足够 */
+}
+
+/* 6. 表单容器（白色卡片） - 居中设置 */
+.form-container {
+  background-color: rgba(255, 255, 255, 0.9); /* 白色背景，带透明度 */
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  /* 核心居中设置：减小卡片 */
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.form-container h2 {
+  font-size: 18px;
+  color: #303133;
+  border-left: 4px solid #d3d1d1;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+/* 7. 表单元素样式 */
+#addBookForm p {
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+}
+
+#addBookForm label {
+  font-weight: normal;
+  color: #606266;
+  width: 120px; /* 调整标签宽度 */
+  flex-shrink: 0;
+  text-align: right;
+  padding-right: 15px;
+  font-size: 14px; /* 调整字体大小 */
+}
+
+#addBookForm input[type="text"] {
+  flex-grow: 1;
+  padding: 8px 15px; /* 调整内边距 */
+  border: 1px solid #d3d1d1;
+  border-radius: 4px;
+  font-size: 14px; /* 调整字体大小 */
+}
+
+#addBookForm input[type="text"]:focus {
+  border-color: #d3d1d1;
+  box-shadow: 0 0 0 2px rgb(211, 209, 209);
+  outline: none;
+}
+
+/* 8. 提交按钮样式 - 绿色按钮 */
+#addBookForm input[type="submit"] {
+  display: block;
+  min-width: 150px; /* 调整最小宽度 */
+  width: auto; /* 自动调整宽度以适应内容 */
+  padding: 10px 20px; /* 调整内边距 */
+  background-color: #67c23a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px; /* 调整字体 */
+  font-weight: 500;
+  cursor: pointer;
+  margin: 30px auto 0 auto; /* 调整上边距 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center; /* 文字居中 */
+  white-space: nowrap; /* 防止文字换行 */
+}
+
+#addBookForm input[type="submit"]:hover {
+  background-color: #5cb85c;
+}
+
+/* 9. 图片容器样式 - 与白色卡片嵌合 */
+.image-container {
+  text-align: center;
+  margin-top: 30px; /* 调整上边距 */
+  margin-left: -30px;
+  margin-right: -30px;
+  margin-bottom: -30px; /* 负边距使图片与卡片底部贴合 */
+  padding: 0;
+  overflow: hidden; /* 隐藏超出容器的部分 */
+}
+
+.decorative-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 400px; /* 减小最大高度以适应较小的卡片 */
+  border-radius: 0 0 4px 4px;
+  box-shadow: none;
+  width: 100%;
+  object-fit: cover; /* 保持比例填充 */
+  object-position: top; /* 优先显示图片顶部 */
+}

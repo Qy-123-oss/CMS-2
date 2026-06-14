@@ -1,0 +1,301 @@
+/* book-list.css - Final version: Mint green background + horizontal colored buttons */
+
+/* 1. Global styles and background */
+body {
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  /* 浅蓝色背景 */
+  background-color: #e3f2fd;
+  background-image: url('../Images/school.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  color: #333;
+  min-height: 100vh;
+}
+
+/* 2. Top bar (Header) */
+h1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
+  background-color: rgba(187, 222, 251, 0.9); /* 更深一些的蓝色，带透明度 */
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  backdrop-filter: blur(5px); /* 添加模糊效果 */
+}
+
+/* Top title text container - Ensure title does not overlap with sidebar */
+.header-title {
+  padding-left: 230px; /* Space for sidebar + 30px spacing */
+  display: flex;
+  align-items: center;
+}
+
+/* Logo styles */
+.logo {
+  height: 40px;
+  vertical-align: middle;
+  margin-right: 15px;
+}
+
+/* 3. Top user info and logout button */
+.user-info {
+  position: static;
+  padding-right: 30px;
+  font-size: 14px;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+.user-info p {
+  margin: 0;
+  padding-right: 15px;
+}
+
+.user-info button {
+  background-color: #f56c6c;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.user-info button:hover {
+  background-color: #e74c3c;
+}
+
+/* 4. Sidebar menu (Menu) - 更柔和的蓝色背景 */
+.menu {
+  width: 200px;
+  background-color: rgba(105, 172, 230, 0.9); /* 更柔和的蓝色，带透明度 */
+  color: white;
+  padding-top: 60px;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  box-sizing: border-box;
+  overflow-y: auto;
+  backdrop-filter: blur(5px); /* 添加模糊效果 */
+}
+
+.menu h2 {
+  display: none;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li a {
+  display: block;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  font-weight: bold; /* 加粗菜单文字 */
+  border-left: 3px solid transparent;
+}
+
+.menu li a:hover {
+  background-color: rgba(25, 118, 210, 0.8); /* 悬停时稍深的蓝色，带透明度 */
+  color: #ffffff;
+}
+
+/* Current active menu item */
+.menu li a[href="book-list.html"].active {
+  background-color: rgba(21, 101, 192, 0.8); /* 活动项更深的蓝色，带透明度 */
+  color: #ffffff;
+  font-weight: bold;
+  border-left: 3px solid #ffffff;
+}
+
+/* Home page active menu item */
+.menu li a[href="book-main.html"].active {
+  background-color: rgba(21, 101, 192, 0.8);
+  color: #ffffff;
+  font-weight: bold;
+  border-left: 3px solid #ffffff;
+}
+
+/* Add Book page active menu item */
+.menu li a[href="add-book.html"].active {
+  background-color: rgba(21, 101, 192, 0.8);
+  color: #ffffff;
+  font-weight: bold;
+  border-left: 3px solid #ffffff;
+}
+
+/* Borrow Management page active menu item */
+.menu li a[href="borrow-management.html"].active {
+  background-color: rgba(21, 101, 192, 0.8);
+  color: #ffffff;
+  font-weight: bold;
+  border-left: 3px solid #ffffff;
+}
+
+/* Book Query page active menu item */
+.menu li a[href="query-books.html"].active {
+  background-color: rgba(21, 101, 192, 0.8);
+  color: #ffffff;
+  font-weight: bold;
+  border-left: 3px solid #ffffff;
+}
+
+/* Reader Management page active menu item */
+.menu li a[href="reader-management.html"].active {
+  background-color: rgba(21, 101, 192, 0.8);
+  color: #ffffff;
+  font-weight: bold;
+  border-left: 3px solid #ffffff;
+}
+
+/* Statistics Report page active menu item */
+.menu li a[href="statistics.html"].active {
+  background-color: rgba(21, 101, 192, 0.8);
+  color: #ffffff;
+  font-weight: bold;
+  border-left: 3px solid #ffffff;
+}
+
+/* 5. Main content area */
+.content-wrapper {
+  margin-left: 200px;
+  padding: 20px 30px;
+  width: calc(100% - 200px);
+  box-sizing: border-box;
+  padding-top: 80px;
+}
+
+/* 6. Table container (table-container) - White card style */
+.table-container {
+  background-color: rgba(255, 255, 255, 0.9); /* White card with transparency */
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin: 0 auto 30px auto;
+  max-width: 1200px;
+}
+
+.table-container h2 {
+  font-size: 20px;
+  color: #303133;
+  border-left: 4px solid #67c23a; /* Title indicator bar */
+  padding-left: 10px;
+  padding-bottom: 5px;
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+/* 7. Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+  table-layout: fixed;
+}
+
+thead {
+  background-color: #f5f7fa;
+  color: #909399;
+}
+
+th {
+  padding: 12px 10px;
+  font-weight: 600;
+  border-bottom: 1px solid #ebeef5;
+}
+
+td {
+  padding: 12px 10px;
+  color: #606266;
+  border-bottom: 1px solid #ebeef5;
+  word-wrap: break-word;
+}
+
+/* Status column style */
+td:nth-child(6) {
+  font-weight: 500;
+}
+
+/* 8. Action button styles - Key adjustments */
+td:last-child {
+  /* Ensure buttons in the action column are arranged horizontally */
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping in case of too many buttons */
+  gap: 5px; /* Spacing between buttons */
+}
+
+/* Base button styles */
+.edit-btn, .delete-btn, .scrap-btn, .relocate-btn {
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  flex-shrink: 0; /* Prevent buttons from being compressed */
+}
+
+/* Edit button: Blue (primary action) */
+.edit-btn {
+  background-color: #409eff;
+  color: white;
+}
+.edit-btn:hover {
+  background-color: #3a8ee6;
+}
+
+/* Delete button: Red (dangerous action) */
+.delete-btn {
+  background-color: #f56c6c;
+  color: white;
+}
+.delete-btn:hover {
+  background-color: #e74c3c;
+}
+
+/* Scrap button: Purple/dark (specific action) */
+.scrap-btn {
+  background-color: #909399;
+  color: white;
+}
+.scrap-btn:hover {
+  background-color: #82848a;
+}
+
+/* Relocate button: Yellow (secondary action) */
+.relocate-btn {
+  background-color: #e6a23c;
+  color: white;
+}
+.relocate-btn:hover {
+  background-color: #cf9239;
+}
+
+/* Remove unnecessary gaps at the end of the table */
+tbody tr:last-child td {
+  border-bottom: none;
+}
+

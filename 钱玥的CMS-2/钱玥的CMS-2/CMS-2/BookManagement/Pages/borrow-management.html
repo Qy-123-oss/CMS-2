@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Borrow Management</title>
+  <link rel="stylesheet" href="../CSS/borrow-management.css">
+  <link rel="stylesheet" href="../CSS/auth.css">
+</head>
+<body class="bm-borrow-page">
+<h1>
+  <div class="header-title">
+    <img src="../Images/logo.png" alt="Logo" class="logo">
+    <i>Library Management System</i>
+  </div>
+  <div class="user-info">
+    <p>Admin: Teacher Zhang <button onclick="window.location.href='../../login.html'">Logout</button></p>
+  </div>
+</h1>
+
+  <div class="menu">
+    <h2>Menu</h2>
+    <ul>
+      <li><a href="book-main.html">Home</a></li>
+      <li><a href="book-list.html">Book List</a></li>
+      <li><a href="add-book.html">Add New Book</a></li>
+      <li><a href="borrow-management.html" class="active">Borrow Management</a></li>
+      <li><a href="query-books.html">Book Query</a></li>
+      <li><a href="reader-management.html">Reader Management</a></li>
+      <li><a href="statistics.html">Statistics Report</a></li>
+    </ul>
+  </div>
+
+  <div class="content-wrapper">
+    <div class="form-container">
+      <h2>Borrow Books</h2>
+      <form action="#" method="POST" id="borrowForm">
+        <p>
+          <label for="book-title">Book Title:</label>
+          <input type="text" id="book-title" name="book-title" required placeholder="Please enter the book title">
+        </p>
+
+        <p>
+          <label for="reader-name">Reader Name:</label>
+          <input type="text" id="reader-name" name="reader-name" required placeholder="Please enter the reader name">
+        </p>
+
+        <p>
+          <label for="borrow-date">Borrow Date:</label>
+          <input type="date" id="borrow-date" name="borrow-date" required>
+        </p>
+
+        <p>
+          <label for="return-date">Due Date:</label>
+          <input type="date" id="return-date" name="return-date" required>
+        </p>
+
+        <p>
+          <input type="submit" value="Process Borrowing">
+        </p>
+      </form>
+    </div>
+
+    <div class="form-container">
+      <h2>Return Books</h2>
+      <form action="#" method="POST" id="returnForm">
+        <p>
+          <label for="return-book-title">Book Title:</label>
+          <input type="text" id="return-book-title" name="return-book-title" required placeholder="Please enter the book title">
+        </p>
+
+        <p>
+          <label for="return-reader-name">Reader Name:</label>
+          <input type="text" id="return-reader-name" name="return-reader-name" required placeholder="Please enter the reader name">
+        </p>
+
+        <p>
+          <label for="actual-return-date">Actual Return Date:</label>
+          <input type="date" id="actual-return-date" name="actual-return-date" required>
+        </p>
+
+        <p>
+          <input type="submit" value="Process Return">
+        </p>
+      </form>
+    </div>
+
+    <div class="form-container">
+      <h2>Renew Books</h2>
+      <form action="#" method="POST" id="renewForm">
+        <p>
+          <label for="renew-book-title">Book Title:</label>
+          <input type="text" id="renew-book-title" name="renew-book-title" required placeholder="Please enter the book title">
+        </p>
+
+        <p>
+          <label for="renew-reader-name">Reader Name:</label>
+          <input type="text" id="renew-reader-name" name="renew-reader-name" required placeholder="Please enter the reader name">
+        </p>
+
+        <p>
+          <label for="new-return-date">New Due Date:</label>
+          <input type="date" id="new-return-date" name="new-return-date" required>
+        </p>
+
+        <p>
+          <input type="submit" value="Process Renewal">
+        </p>
+      </form>
+    </div>
+
+    <div class="form-container">
+      <h2>Reserve Books</h2>
+      <form action="#" method="POST" id="reserveForm">
+        <p>
+          <label for="reserve-book-title">Book Title:</label>
+          <input type="text" id="reserve-book-title" name="reserve-book-title" required placeholder="Please enter the book title">
+        </p>
+
+        <p>
+          <label for="reserve-reader-name">Reader Name:</label>
+          <input type="text" id="reserve-reader-name" name="reserve-reader-name" required placeholder="Please enter the reader name">
+        </p>
+
+        <p>
+          <label for="reserve-date">Reservation Date:</label>
+          <input type="date" id="reserve-date" name="reserve-date" required>
+        </p>
+
+        <p>
+          <input type="submit" value="Process Reservation">
+        </p>
+      </form>
+    </div>
+  </div>
+  <script src="../JS/storage.js"></script>
+  <script src="../JS/ui.js"></script>
+  <script src="../JS/auth.js"></script>
+  <script src="../JS/business-rules.js"></script>
+  <script src="../JS/business-reports.js"></script>
+  <script src="../JS/data-tools.js"></script>
+  <script src="../JS/business-workflows.js"></script>
+  <script src="../JS/books.js"></script>
+  <script src="../JS/readers.js"></script>
+  <script src="../JS/circulation.js"></script>
+  <script src="../JS/statistics.js"></script>
+  <script src="../JS/app.js"></script>
+</body>
+</html>
+
+
+

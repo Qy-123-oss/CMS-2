@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Management System</title>
+  <link rel="stylesheet" href="../CSS/book-main.css">
+  <link rel="stylesheet" href="../CSS/dashboard.css">
+  <link rel="stylesheet" href="../CSS/auth.css">
+</head>
+<body>
+<h1>
+  <div class="header-title">
+    <img src="../Images/logo.png" alt="Logo" class="logo">
+    <i>Library Management System</i>
+  </div>
+  <div class="user-info">
+    <p>Admin: Teacher Zhang <button onclick="window.location.href='../../login.html'">Logout</button></p>
+  </div>
+</h1>
+
+  <div class="menu">
+    <h2>Menu</h2>
+    <ul>
+      <li><a href="book-main.html" class="active">Home</a></li>
+      <li><a href="book-list.html">Book List</a></li>
+      <li><a href="add-book.html">Add New Book</a></li>
+      <li><a href="borrow-management.html">Borrow Management</a></li>
+      <li><a href="query-books.html">Book Query</a></li>
+      <li><a href="reader-management.html">Reader Management</a></li>
+      <li><a href="statistics.html">Statistics Report</a></li>
+    </ul>
+  </div>
+
+  <!-- Insert school2.jpg image below the navigation bar and next to the sidebar -->
+  <div class="school-image-container">
+    <img src="../Images/school2.jpg" alt="School Image" class="school-image">
+  </div>
+
+  <div class="content-wrapper">
+    <div class="table-container">
+      <h2>Welcome to Library Management System</h2>
+
+      <div class="intro-content">
+        <p>The Library Management System is a comprehensive management platform designed specifically for libraries, aiming to improve book management efficiency, streamline borrowing processes, and provide comprehensive data statistics functions.</p>
+
+        <h3>System Functions Overview</h3>
+        <ol>
+          <li><strong>Book List</strong>: View detailed information of all books in the collection</li>
+          <li><strong>Add New Book</strong>: Enter information of newly purchased books into the system</li>
+          <li><strong>Borrow Management</strong>: Handle book borrowing, returning, renewal and reservation</li>
+          <li><strong>Book Query</strong>: Quickly find the required books based on various conditions</li>
+          <li><strong>Reader Management</strong>: Maintain reader information and library cards</li>
+          <li><strong>Statistics Report</strong>: Generate various statistical data and analysis reports</li>
+        </ol>
+
+        <p>The system features a clean and intuitive interface with convenient operations, allowing even first-time administrators to get started quickly.</p>
+      </div>
+
+      <div class="intro-video-container">
+        <video controls width="100%" style="border-radius: 4px;">
+          <source src="../Images/introduction.mp4" type="video/mp4">
+          Your browser does not support video playback.
+        </video>
+      </div>
+    </div>
+  </div>
+  <script src="../JS/storage.js"></script>
+  <script src="../JS/ui.js"></script>
+  <script src="../JS/auth.js"></script>
+  <script src="../JS/business-rules.js"></script>
+  <script src="../JS/business-reports.js"></script>
+  <script src="../JS/data-tools.js"></script>
+  <script src="../JS/business-workflows.js"></script>
+  <script src="../JS/books.js"></script>
+  <script src="../JS/readers.js"></script>
+  <script src="../JS/circulation.js"></script>
+  <script src="../JS/statistics.js"></script>
+  <script src="../JS/app.js"></script>
+</body>
+</html>
+
+
+

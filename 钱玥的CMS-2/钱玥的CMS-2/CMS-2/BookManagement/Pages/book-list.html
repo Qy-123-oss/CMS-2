@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book List</title>
+  <link rel="stylesheet" href="../CSS/book-list.css">
+  <link rel="stylesheet" href="../CSS/auth.css">
+</head>
+<body class="bm-book-list-page">
+<h1>
+  <div class="header-title">
+    <img src="../Images/logo.png" alt="Logo" class="logo">
+    <i>Library Management System</i>
+  </div>
+  <div class="user-info">
+    <p>Admin: Teacher Zhang <button onclick="window.location.href='../../login.html'">Logout</button></p>
+  </div>
+</h1>
+
+  <div class="menu">
+    <h2>Menu</h2>
+    <ul>
+      <li><a href="book-main.html">Home</a></li>
+      <li><a href="book-list.html" class="active">Book List</a></li>
+      <li><a href="add-book.html">Add New Book</a></li>
+      <li><a href="borrow-management.html">Borrow Management</a></li>
+      <li><a href="query-books.html">Book Query</a></li>
+      <li><a href="reader-management.html">Reader Management</a></li>
+      <li><a href="statistics.html">Statistics Report</a></li>
+    </ul>
+  </div>
+
+  <div class="content-wrapper">
+    <div class="table-container">
+      <h2>Book Information List</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>Publisher</th>
+            <th>Location</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Computer Networking</td>
+            <td>Xie Xiren</td>
+            <td>9787111435623</td>
+            <td>Pearson Education</td>
+            <td>A-1-001</td>
+            <td>Available</td>
+            <td>
+              <button class="edit-btn">Edit</button>
+              <button class="delete-btn">Delete</button>
+              <button class="scrap-btn">Scrap</button>
+              <button class="relocate-btn">Relocate</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Introduction to Algorithms</td>
+            <td>Thomas H. Cormen</td>
+            <td>9787111221847</td>
+            <td>Pearson Education</td>
+            <td>A-1-002</td>
+            <td>Borrowed</td>
+            <td>
+              <button class="edit-btn">Edit</button>
+              <button class="delete-btn">Delete</button>
+              <button class="scrap-btn">Scrap</button>
+              <button class="relocate-btn">Relocate</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Computer Systems: A Programmer's Perspective</td>
+            <td>Randal E. Bryant</td>
+            <td>9787111435623</td>
+            <td>Pearson Education</td>
+            <td>A-1-003</td>
+            <td>Overdue</td>
+            <td>
+              <button class="edit-btn">Edit</button>
+              <button class="delete-btn">Delete</button>
+              <button class="scrap-btn">Scrap</button>
+              <button class="relocate-btn">Relocate</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+
+    </div>
+  </div>
+  <script src="../JS/storage.js"></script>
+  <script src="../JS/ui.js"></script>
+  <script src="../JS/auth.js"></script>
+  <script src="../JS/business-rules.js"></script>
+  <script src="../JS/business-reports.js"></script>
+  <script src="../JS/data-tools.js"></script>
+  <script src="../JS/business-workflows.js"></script>
+  <script src="../JS/books.js"></script>
+  <script src="../JS/readers.js"></script>
+  <script src="../JS/circulation.js"></script>
+  <script src="../JS/statistics.js"></script>
+  <script src="../JS/app.js"></script>
+</body>
+</html>
+
+
+

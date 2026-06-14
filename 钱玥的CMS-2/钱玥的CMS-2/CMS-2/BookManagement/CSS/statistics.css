@@ -1,0 +1,229 @@
+/* statistics.css - Statistics report page styles (CSS compatibility errors fixed) */
+
+/* 1. Global and background - Force 浅蓝色背景 */
+html, body {
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  /* Background with school image */
+  background-image: url('../Images/school.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  backdrop-filter: blur(5px);
+  background-color: rgba(227, 242, 253, 0.9);
+  color: #333;
+  min-height: 100vh;
+}
+body {
+  background-color: transparent !important; /* Ensure body no longer sets background, let html background take effect */
+}
+
+
+/* 2. Top bar (Header) */
+h1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
+  background-color: rgba(187, 222, 251, 0.9); /* 更深一些的蓝色，与背景形成层次 */
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  backdrop-filter: blur(5px);
+}
+
+/* Top title text container */
+.header-title {
+  padding-left: 230px;
+  display: flex;
+  align-items: center;
+}
+
+/* Logo styles */
+.logo {
+  height: 40px;
+  vertical-align: middle;
+  margin-right: 15px;
+}
+
+/* 3. Top user info and logout button */
+.user-info {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 60px;
+  z-index: 101;
+  background-color: #bbdefb; /* 与顶部栏保持一致 */
+  padding-right: 30px;
+  font-size: 14px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 250px;
+  box-sizing: border-box;
+}
+
+.user-info p {
+  margin: 0;
+  padding-right: 15px;
+}
+
+.user-info button {
+  background-color: #f56c6c;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.user-info button:hover {
+  background-color: #e74c3c;
+}
+
+/* 4. Sidebar menu (Menu) - 更柔和的蓝色背景 */
+.menu {
+  width: 200px;
+  background-color: rgba(105, 172, 230, 0.9); /* 更柔和的蓝色 */
+  color: white;
+  padding-top: 60px;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  box-sizing: border-box;
+  overflow-y: auto;
+  backdrop-filter: blur(5px);
+}
+
+.menu h2 {
+  display: none;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li a {
+  display: block;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  font-weight: bold;
+  border-left: 3px solid transparent;
+}
+
+.menu li a:hover {
+  background-color: rgba(25, 118, 210, 0.9); /* 悬停时稍深的蓝色 */
+  color: #ffffff;
+}
+
+/* Current active menu item */
+.menu li a[href="statistics.html"].active,
+.menu li a[href="statistics.html"] {
+  background-color: rgba(21, 101, 192, 0.9); /* 活动项更深的蓝色 */
+  color: #ffffff;
+  font-weight: bold;
+  border-left: 3px solid #ffffff;
+}
+
+/* 5. Main content area */
+.content-wrapper {
+  margin-left: 200px;
+  padding: 20px 30px;
+  width: calc(100% - 200px);
+  box-sizing: border-box;
+  padding-top: 80px;
+}
+
+/* 6. Content cards (white cards) - For direct divs within content-wrapper */
+.content-wrapper > div {
+  background-color: rgba(255, 255, 255, 0.8); /* 半透明白色背景 */
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  backdrop-filter: blur(5px); /* 毛玻璃效果 */
+}
+
+/* Main title style */
+.content-wrapper > div > h2 {
+  font-size: 20px;
+  color: #303133;
+  border-left: 4px solid #409eff; /* Blue indicator bar */
+  padding-left: 10px;
+  padding-bottom: 5px;
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+/* Subtitle style */
+h3 {
+  font-size: 16px;
+  color: #606266;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ebeef5;
+  padding-bottom: 5px;
+}
+
+/* 7. Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+  table-layout: auto;
+}
+
+thead {
+  background-color: rgba(245, 247, 250, 0.8);
+  color: #909399;
+}
+
+th {
+  padding: 12px 10px;
+  font-weight: 600;
+  border-bottom: 1px solid #ebeef5;
+}
+
+td {
+  padding: 12px 10px;
+  color: #606266;
+  border-bottom: 1px solid rgba(235, 238, 245, 0.8);
+  word-wrap: break-word;
+}
+
+/* Mouse hover effect */
+tbody tr:hover {
+  background-color: #f8f8f8;
+}
+
+/* Remove unnecessary gaps at the end of the table */
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Bold display of the last column content in specific tables (e.g.: status/urgency level) */
+table:nth-of-type(2) tbody td:last-child,
+table:nth-of-type(3) tbody td:last-child {
+  font-weight: bold;
+}
