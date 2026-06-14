@@ -2,6 +2,7 @@
 (function () {
   'use strict';
 
+  //AUTH_KEY: localStorage key for storing current session info
   var BM = window.BookManagement = window.BookManagement || {};
   var AUTH_KEY = 'cms_book_management_auth_v1';
   var LOGIN_PAGE = 'login.html';
@@ -9,6 +10,8 @@
     { username: 'admin', password: 'admin123', role: 'admin', name: 'Teacher Zhang' },
     { username: 'user', password: 'user123', role: 'user', name: 'Student User' }
   ];
+
+  // Pages that require admin role to access
   var adminPages = {
     'add-book.html': true,
     'borrow-management.html': true,
@@ -16,6 +19,7 @@
     'statistics.html': true
   };
 
+  // Safely parse JSON string, return fallback value if parsing fails
   function parse(json, fallback) {
     try {
       return JSON.parse(json);
@@ -23,19 +27,19 @@
       return fallback;
     }
   }
-
+  // Get the current page name from URL path, e.g. 'login.html' or 'book-main.html'
   function page() {
     return (location.pathname.split('/').pop() || '').toLowerCase();
   }
-
+  // Get the path to login page, depending on current page location
   function loginPath() {
     return page() === LOGIN_PAGE ? LOGIN_PAGE : '../' + LOGIN_PAGE;
   }
-
+  // Get the path to main page, depending on current page location
   function mainPath() {
     return page() === LOGIN_PAGE ? 'Pages/book-main.html' : 'book-main.html';
   }
-
+  // Get current session info from localStorage, return null if not logged in or invalid data
   function session() {
     var current = parse(localStorage.getItem(AUTH_KEY), null);
     if (!current || !current.username || !current.role) {
@@ -65,12 +69,13 @@
     }));
     return match;
   }
-
+// Sign out the current user by removing session info from localStorage and redirecting to login page
   function signOut() {
     localStorage.removeItem(AUTH_KEY);
     location.href = loginPath();
   }
 
+  //Check if user is authenticated and has permission to access current page, redirect to login page if not authenticated, or main page if not authorized
   function requireAuth() {
     if (page() === LOGIN_PAGE) {
       return true;
@@ -108,7 +113,7 @@
     host.appendChild(badge);
     host.appendChild(logout);
   }
-
+  //hide menu items for non-admin users
   function filterMenu() {
     var current = session();
     if (!current || current.role === 'admin') {
@@ -122,6 +127,7 @@
     });
   }
 
+  // init login page
   function initLogin() {
     if (page() !== LOGIN_PAGE) {
       return;
@@ -142,6 +148,7 @@
         }
       }
     });
+    // quick login buttons
     Array.prototype.slice.call(document.querySelectorAll('[data-login-as]')).forEach(function (button) {
       button.addEventListener('click', function () {
         var role = button.getAttribute('data-login-as');

@@ -6,6 +6,7 @@
   var ui = BM.ui;
   var store = BM.store;
 
+  //get query parameters from URL
   function getQueryParam(name) {
     var query = location.search ? location.search.substring(1).split('&') : [];
     var i;
@@ -18,7 +19,7 @@
     }
     return '';
   }
-
+  //enhance book form with additional fields
   function enhanceBookForm() {
     var form = ui.qs('#addBookForm');
     if (!form || ui.qs('#book-type')) {
@@ -64,7 +65,7 @@
     ]);
     form.insertBefore(tools, submitRow);
   }
-
+  //fill book form with existing data for editing
   function fillBookForm(book) {
     ui.setValue('book-title', book.title);
     ui.setValue('author', book.author);
@@ -82,7 +83,7 @@
     ui.setValue('source', book.source || 'Purchase');
     ui.setValue('keywords', book.keywords || '');
   }
-
+  //get payload from book form
   function payload() {
     return {
       title: ui.value('book-title'),
@@ -102,7 +103,7 @@
       note: ui.value('note')
     };
   }
-
+  //init add book page
   function initAddBook() {
     if (ui.page() !== 'add-book.html') {
       return;
