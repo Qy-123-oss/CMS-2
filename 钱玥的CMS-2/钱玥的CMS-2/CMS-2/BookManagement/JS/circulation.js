@@ -1,189 +1,205 @@
-/* global window */
+/* global window, Vue */
 (function () {
   'use strict';
 
   var BM = window.BookManagement = window.BookManagement || {};
-  var ui = BM.ui;
   var store = BM.store;
+  var app = null;
+
+  function page() {
+    return (window.location.pathname.split('/').pop() || '').toLowerCase();
+  }
 
   function today() {
     return BM.utils.dateText();
   }
 
-  function setDefaultDates() {
-    if (ui.page() !== 'borrow-management.html') {
-      return;
-    }
-    ui.setValue('borrow-date', today());
-    ui.setValue('return-date', BM.utils.addDays(30));
-    ui.setValue('actual-return-date', today());
-    ui.setValue('new-return-date', BM.utils.addDays(45));
-    ui.setValue('reserve-date', today());
+  function defaultForms() {
+    return {
+      borrow: { bookTitle: '', readerName: '', borrowDate: today(), dueDate: BM.utils.addDays(30) },
+      returnBook: { bookTitle: '', readerName: '', actualReturnDate: today() },
+      renew: { bookTitle: '', readerName: '', newDueDate: BM.utils.addDays(45) },
+      reserve: { bookTitle: '', readerName: '', reserveDate: today() }
+    };
   }
 
-  function panel() {
-    var wrapper = ui.qs('.content-wrapper');
-    if (!wrapper) {
-      return null;
-    }
-    var node = ui.ensurePanel(wrapper, 'bm-circulation-panel', '');
-    node.className = 'bm-circulation-panel';
-    node.removeAttribute('style');
-    return node;
-  }
-
-  function statusBadge(status) {
-    var value = status || 'Unknown';
-    return ui.el('span', { className: 'bm-status-badge bm-status-' + value.toLowerCase(), text: value });
-  }
-
-  function appendCell(row, child) {
-    var cell = ui.el('td');
-    cell.appendChild(child);
-    row.appendChild(cell);
-  }
-
-  function renderRecords() {
-    if (ui.page() !== 'borrow-management.html') {
-      return;
-    }
-    var host = panel();
-    if (!host) {
-      return;
-    }
-    ui.clear(host);
+  function loadState() {
     var state = store.load();
     store.refresh(state);
     store.save(state);
-
-    var activeBorrowCount = state.borrowRecords.filter(function (record) {
-      return record.status === 'Borrowed' || record.status === 'Overdue';
-    }).length;
-    var overdueCount = state.borrowRecords.filter(function (record) {
-      return record.status === 'Overdue';
-    }).length;
-    var returnedCount = state.borrowRecords.filter(function (record) {
-      return record.status === 'Returned';
-    }).length;
-    var openReservations = (state.reservations || []).filter(function (reservation) {
-      return reservation.status === 'Waiting' || reservation.status === 'Ready' || reservation.status === 'Notified';
-    }).length;
-
-    var header = ui.el('div', { className: 'bm-circulation-header' });
-    var heading = ui.el('div');
-    heading.appendChild(ui.el('p', { className: 'bm-circulation-kicker', text: 'Circulation Desk' }));
-    heading.appendChild(ui.el('h2', { text: 'Borrow Records and Reservations' }));
-    heading.appendChild(ui.el('p', { className: 'bm-circulation-subtitle', text: 'Track active loans, returns, renewals and reservation queue from localStorage.' }));
-    header.appendChild(heading);
-    host.appendChild(header);
-
-    var stats = ui.el('div', { className: 'bm-circulation-stats' });
-    [
-      ['Active Loans', activeBorrowCount],
-      ['Overdue', overdueCount],
-      ['Returned', returnedCount],
-      ['Open Reservations', openReservations]
-    ].forEach(function (item) {
-      var stat = ui.el('div', { className: 'bm-circulation-stat' });
-      stat.appendChild(ui.el('span', { text: item[0] }));
-      stat.appendChild(ui.el('strong', { text: item[1] }));
-      stats.appendChild(stat);
-    });
-    host.appendChild(stats);
-
-    var grid = ui.el('div', { className: 'bm-circulation-grid' });
-    var recordPanel = ui.el('section', { className: 'bm-circulation-card bm-circulation-card-wide' });
-    recordPanel.appendChild(ui.el('div', { className: 'bm-circulation-card-title', html: '<h3>Borrow Records</h3><span>' + state.borrowRecords.length + ' records</span>' }));
-    var table = ui.el('table', { className: 'bm-circulation-table' });
-    table.appendChild(ui.el('thead', {}, [ui.el('tr', {}, ['Book', 'Reader', 'Borrow Date', 'Due Date', 'Return Date', 'Status', 'Renew'].map(function (head) { return ui.el('th', { text: head }); }))]));
-    var body = ui.el('tbody');
-    if (!state.borrowRecords.length) {
-      ui.empty(body, 7, 'No borrow records found.');
-    } else {
-      state.borrowRecords.forEach(function (record) {
-        var row = ui.el('tr');
-        row.appendChild(ui.td(record.bookTitle));
-        row.appendChild(ui.td(record.readerName));
-        row.appendChild(ui.td(record.borrowDate));
-        row.appendChild(ui.td(record.dueDate));
-        row.appendChild(ui.td(record.actualReturnDate || '-'));
-        appendCell(row, statusBadge(record.status));
-        row.appendChild(ui.td(record.renewTimes || 0));
-        body.appendChild(row);
-      });
-    }
-    table.appendChild(body);
-    recordPanel.appendChild(table);
-    grid.appendChild(recordPanel);
-
-    var reservePanel = ui.el('section', { className: 'bm-circulation-card' });
-    var reservations = state.reservations || [];
-    reservePanel.appendChild(ui.el('div', { className: 'bm-circulation-card-title', html: '<h3>Reservations</h3><span>' + reservations.length + ' records</span>' }));
-    var reserveTable = ui.el('table', { className: 'bm-circulation-table' });
-    reserveTable.appendChild(ui.el('thead', {}, [ui.el('tr', {}, ['Book', 'Reader', 'Reserve Date', 'Status', 'Actions'].map(function (head) { return ui.el('th', { text: head }); }))]));
-    var reserveBody = ui.el('tbody');
-    if (!reservations.length) {
-      ui.empty(reserveBody, 5, 'No reservations found.');
-    } else {
-      reservations.forEach(function (reservation) {
-        var row = ui.el('tr');
-        row.appendChild(ui.td(reservation.bookTitle));
-        row.appendChild(ui.td(reservation.readerName));
-        row.appendChild(ui.td(reservation.reserveDate));
-        appendCell(row, statusBadge(reservation.status));
-        var actions = ui.el('td');
-        if (reservation.status === 'Waiting' || reservation.status === 'Ready' || reservation.status === 'Notified') {
-          actions.appendChild(ui.button('Cancel', 'bm-cancel-reservation', function () {
-            try {
-              store.cancelReservation(reservation.id);
-              ui.toast('Reservation cancelled.');
-              renderRecords();
-            } catch (error) {
-              ui.handle(error);
-            }
-          }));
-        } else {
-          actions.textContent = '-';
-        }
-        row.appendChild(actions);
-        reserveBody.appendChild(row);
-      });
-    }
-    reserveTable.appendChild(reserveBody);
-    reservePanel.appendChild(reserveTable);
-    grid.appendChild(reservePanel);
-    host.appendChild(grid);
+    return state;
   }
 
-  function bind(id, action, payload) {
-    var form = ui.qs('#' + id);
-    if (!form) {
-      return;
+  function notify(message, type) {
+    if (BM.notify) {
+      BM.notify(message, type);
     }
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
-      try {
-        store[action](payload());
-        ui.toast('Operation completed.');
-        form.reset();
-        setDefaultDates();
-        renderRecords();
-      } catch (error) {
-        ui.handle(error);
-      }
-    });
+  }
+
+  function handle(error) {
+    notify(error && error.message ? error.message : String(error), 'error');
   }
 
   function init() {
-    if (ui.page() !== 'borrow-management.html') {
+    var mount = document.getElementById('circulation-app');
+    if (page() !== 'borrow-management.html' || !mount) {
       return;
     }
-    setDefaultDates();
-    bind('borrowForm', 'borrowBook', function () { return { bookTitle: ui.value('book-title'), readerName: ui.value('reader-name'), borrowDate: ui.value('borrow-date'), dueDate: ui.value('return-date') }; });
-    bind('returnForm', 'returnBook', function () { return { bookTitle: ui.value('return-book-title'), readerName: ui.value('return-reader-name'), actualReturnDate: ui.value('actual-return-date') }; });
-    bind('renewForm', 'renewBook', function () { return { bookTitle: ui.value('renew-book-title'), readerName: ui.value('renew-reader-name'), newDueDate: ui.value('new-return-date') }; });
-    bind('reserveForm', 'reserveBook', function () { return { bookTitle: ui.value('reserve-book-title'), readerName: ui.value('reserve-reader-name'), reserveDate: ui.value('reserve-date') }; });
-    renderRecords();
+    if (!window.Vue || !window.Vue.createApp) {
+      return;
+    }
+
+    app = Vue.createApp({
+      data: function () {
+        var state = loadState();
+        return {
+          state: state,
+          forms: defaultForms(),
+          formCards: [
+            { key: 'borrow', title: 'Borrow Books', submit: 'Process Borrowing', action: 'borrowBook', fields: [
+              { key: 'bookTitle', id: 'book-title', label: 'Book Title:', type: 'text', placeholder: 'Please enter the book title' },
+              { key: 'readerName', id: 'reader-name', label: 'Reader Name:', type: 'text', placeholder: 'Please enter the reader name' },
+              { key: 'borrowDate', id: 'borrow-date', label: 'Borrow Date:', type: 'date' },
+              { key: 'dueDate', id: 'return-date', label: 'Due Date:', type: 'date' }
+            ] },
+            { key: 'returnBook', title: 'Return Books', submit: 'Process Return', action: 'returnBook', fields: [
+              { key: 'bookTitle', id: 'return-book-title', label: 'Book Title:', type: 'text', placeholder: 'Please enter the book title' },
+              { key: 'readerName', id: 'return-reader-name', label: 'Reader Name:', type: 'text', placeholder: 'Please enter the reader name' },
+              { key: 'actualReturnDate', id: 'actual-return-date', label: 'Actual Return Date:', type: 'date' }
+            ] },
+            { key: 'renew', title: 'Renew Books', submit: 'Process Renewal', action: 'renewBook', fields: [
+              { key: 'bookTitle', id: 'renew-book-title', label: 'Book Title:', type: 'text', placeholder: 'Please enter the book title' },
+              { key: 'readerName', id: 'renew-reader-name', label: 'Reader Name:', type: 'text', placeholder: 'Please enter the reader name' },
+              { key: 'newDueDate', id: 'new-return-date', label: 'New Due Date:', type: 'date' }
+            ] },
+            { key: 'reserve', title: 'Reserve Books', submit: 'Process Reservation', action: 'reserveBook', fields: [
+              { key: 'bookTitle', id: 'reserve-book-title', label: 'Book Title:', type: 'text', placeholder: 'Please enter the book title' },
+              { key: 'readerName', id: 'reserve-reader-name', label: 'Reader Name:', type: 'text', placeholder: 'Please enter the reader name' },
+              { key: 'reserveDate', id: 'reserve-date', label: 'Reservation Date:', type: 'date' }
+            ] }
+          ]
+        };
+      },
+      computed: {
+        activeBorrowCount: function () {
+          return this.state.borrowRecords.filter(function (record) {
+            return record.status === 'Borrowed' || record.status === 'Overdue';
+          }).length;
+        },
+        overdueCount: function () {
+          return this.state.borrowRecords.filter(function (record) { return record.status === 'Overdue'; }).length;
+        },
+        returnedCount: function () {
+          return this.state.borrowRecords.filter(function (record) { return record.status === 'Returned'; }).length;
+        },
+        openReservations: function () {
+          return (this.state.reservations || []).filter(function (reservation) {
+            return reservation.status === 'Waiting' || reservation.status === 'Ready' || reservation.status === 'Notified';
+          }).length;
+        },
+        stats: function () {
+          return [
+            ['Active Loans', this.activeBorrowCount],
+            ['Overdue', this.overdueCount],
+            ['Returned', this.returnedCount],
+            ['Open Reservations', this.openReservations]
+          ];
+        }
+      },
+      methods: {
+        statusClass: function (status) {
+          return 'bm-status-badge bm-status-' + String(status || 'unknown').toLowerCase();
+        },
+        reload: function () {
+          this.state = loadState();
+        },
+        resetForm: function (key) {
+          this.forms[key] = defaultForms()[key];
+        },
+        submit: function (card) {
+          try {
+            store[card.action](this.forms[card.key]);
+            notify('Operation completed.');
+            this.resetForm(card.key);
+            this.reload();
+          } catch (error) {
+            handle(error);
+          }
+        },
+        cancelReservation: function (reservation) {
+          try {
+            store.cancelReservation(reservation.id);
+            notify('Reservation cancelled.');
+            this.reload();
+          } catch (error) {
+            handle(error);
+          }
+        },
+        canCancel: function (reservation) {
+          return reservation.status === 'Waiting' || reservation.status === 'Ready' || reservation.status === 'Notified';
+        }
+      },
+      template:
+        '<div class="form-container" v-for="card in formCards" :key="card.key">' +
+          '<h2>{{ card.title }}</h2>' +
+          '<form action="#" method="POST" :id="card.key + \'Form\'" @submit.prevent="submit(card)">' +
+            '<p v-for="field in card.fields" :key="field.key">' +
+              '<label :for="field.id">{{ field.label }}</label>' +
+              '<input :type="field.type" :id="field.id" :name="field.id" required :placeholder="field.placeholder" v-model="forms[card.key][field.key]">' +
+            '</p>' +
+            '<p><input type="submit" :value="card.submit"></p>' +
+          '</form>' +
+        '</div>' +
+        '<div class="bm-circulation-panel">' +
+          '<div class="bm-circulation-header">' +
+            '<div>' +
+              '<p class="bm-circulation-kicker">Circulation Desk</p>' +
+              '<h2>Borrow Records and Reservations</h2>' +
+              '<p class="bm-circulation-subtitle">Track active loans, returns, renewals and reservation queue from localStorage.</p>' +
+            '</div>' +
+          '</div>' +
+          '<div class="bm-circulation-stats">' +
+            '<div class="bm-circulation-stat" v-for="item in stats" :key="item[0]">' +
+              '<span>{{ item[0] }}</span><strong>{{ item[1] }}</strong>' +
+            '</div>' +
+          '</div>' +
+          '<div class="bm-circulation-grid">' +
+            '<section class="bm-circulation-card bm-circulation-card-wide">' +
+              '<div class="bm-circulation-card-title"><h3>Borrow Records</h3><span>{{ state.borrowRecords.length }} records</span></div>' +
+              '<table class="bm-circulation-table">' +
+                '<thead><tr><th>Book</th><th>Reader</th><th>Borrow Date</th><th>Due Date</th><th>Return Date</th><th>Status</th><th>Renew</th></tr></thead>' +
+                '<tbody>' +
+                  '<tr v-if="!state.borrowRecords.length"><td colspan="7" class="bm-empty-row">No borrow records found.</td></tr>' +
+                  '<tr v-for="record in state.borrowRecords" :key="record.id">' +
+                    '<td>{{ record.bookTitle }}</td><td>{{ record.readerName }}</td><td>{{ record.borrowDate }}</td><td>{{ record.dueDate }}</td><td>{{ record.actualReturnDate || "-" }}</td>' +
+                    '<td><span :class="statusClass(record.status)">{{ record.status }}</span></td><td>{{ record.renewTimes || 0 }}</td>' +
+                  '</tr>' +
+                '</tbody>' +
+              '</table>' +
+            '</section>' +
+            '<section class="bm-circulation-card">' +
+              '<div class="bm-circulation-card-title"><h3>Reservations</h3><span>{{ (state.reservations || []).length }} records</span></div>' +
+              '<table class="bm-circulation-table">' +
+                '<thead><tr><th>Book</th><th>Reader</th><th>Reserve Date</th><th>Status</th><th>Actions</th></tr></thead>' +
+                '<tbody>' +
+                  '<tr v-if="!(state.reservations || []).length"><td colspan="5" class="bm-empty-row">No reservations found.</td></tr>' +
+                  '<tr v-for="reservation in state.reservations" :key="reservation.id">' +
+                    '<td>{{ reservation.bookTitle }}</td><td>{{ reservation.readerName }}</td><td>{{ reservation.reserveDate }}</td>' +
+                    '<td><span :class="statusClass(reservation.status)">{{ reservation.status }}</span></td>' +
+                    '<td><button v-if="canCancel(reservation)" type="button" class="bm-cancel-reservation" @click="cancelReservation(reservation)">Cancel</button><span v-else>-</span></td>' +
+                  '</tr>' +
+                '</tbody>' +
+              '</table>' +
+            '</section>' +
+          '</div>' +
+        '</div>'
+    }).mount('#circulation-app');
+  }
+
+  function renderRecords() {
+    if (app && app.reload) {
+      app.reload();
+    }
   }
 
   BM.circulation = { init: init, renderRecords: renderRecords };

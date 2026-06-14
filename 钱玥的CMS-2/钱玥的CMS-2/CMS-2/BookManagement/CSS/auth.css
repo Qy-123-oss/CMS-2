@@ -1139,7 +1139,8 @@ body.bm-add-book-page:not(.bm-login-body) #addBookForm p:has(> input[type="submi
 
 body.bm-add-book-page:not(.bm-login-body) #addBookForm input[type="text"],
 body.bm-add-book-page:not(.bm-login-body) #addBookForm input[type="number"],
-body.bm-add-book-page:not(.bm-login-body) #addBookForm input[type="date"] {
+body.bm-add-book-page:not(.bm-login-body) #addBookForm input[type="date"],
+body.bm-add-book-page:not(.bm-login-body) #addBookForm select {
   width: 100%;
   min-height: 42px;
   border: 1px solid rgba(145, 184, 198, 0.42);
@@ -1152,7 +1153,8 @@ body.bm-add-book-page:not(.bm-login-body) #addBookForm input[type="date"] {
 
 body.bm-add-book-page:not(.bm-login-body) #addBookForm input[type="text"]:focus,
 body.bm-add-book-page:not(.bm-login-body) #addBookForm input[type="number"]:focus,
-body.bm-add-book-page:not(.bm-login-body) #addBookForm input[type="date"]:focus {
+body.bm-add-book-page:not(.bm-login-body) #addBookForm input[type="date"]:focus,
+body.bm-add-book-page:not(.bm-login-body) #addBookForm select:focus {
   border-color: rgba(103, 194, 58, 0.62);
   box-shadow:
     0 0 0 3px rgba(103, 194, 58, 0.14),
@@ -1176,6 +1178,54 @@ body.bm-add-book-page:not(.bm-login-body) #addBookForm input[type="submit"]:hove
 body.bm-add-book-page:not(.bm-login-body) #addBookForm .relocate-btn:hover {
   filter: brightness(1.04);
   transform: translateY(-1px);
+}
+
+body:not(.bm-login-body) .bm-empty-row {
+  display: table-cell !important;
+  text-align: center;
+  color: #909399 !important;
+  padding: 22px 12px;
+}
+
+body:not(.bm-login-body) .bm-vue-missing {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 18px 22px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #9b3f45;
+  box-shadow: 0 14px 34px rgba(27, 86, 104, 0.14);
+}
+
+#bm-toast {
+  position: fixed;
+  right: 24px;
+  top: 76px;
+  z-index: 9999;
+  max-width: 360px;
+  padding: 12px 16px;
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  color: #fff;
+  font-size: 14px;
+}
+
+.bm-toast-success {
+  background: #67c23a;
+}
+
+.bm-toast-error {
+  background: #f56c6c;
+}
+
+body:not(.bm-login-body) #book-add-app,
+body:not(.bm-login-body) #book-list-app,
+body:not(.bm-login-body) #book-query-app {
+  display: contents;
+}
+
+body.bm-main-page:not(.bm-login-body) #book-main-app {
+  display: contents;
 }
 
 body.bm-add-book-page:not(.bm-login-body) .image-container {

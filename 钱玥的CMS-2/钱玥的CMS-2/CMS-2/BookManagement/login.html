@@ -8,53 +8,9 @@
   <link rel="stylesheet" href="CSS/auth.css">
 </head>
 <body class="bm-login-body">
-  <main class="bm-login-shell">
-    <section class="bm-login-hero">
-      <div class="bm-school-mark" aria-label="Nanjing University of Information Science and Technology">
-        <img src="Images/logo.png" alt="南京信息工程大学">
-      </div>
+  <div id="login-app"></div>
 
-      <div class="bm-hero-title">
-        <h1>Welcome to Library Management System</h1>
-      </div>
-
-      <div class="bm-login-brand">
-        <p><i class="fa-solid fa-book-open-reader" aria-hidden="true"></i> Use an administrator account for back-office circulation, reader and statistics management. Use a user account for front-office book browsing and search.</p>
-      </div>
-    </section>
-
-    <section class="bm-login-panel">
-      <div class="bm-login-card">
-        <h2><i class="fa-solid fa-id-card-clip bm-icon bm-icon-title" aria-hidden="true"></i> Account Login</h2>
-        <p><i class="fa-solid fa-circle-info bm-icon bm-icon-info" aria-hidden="true"></i> Select a role account to enter the matching system view.</p>
-
-        <form id="loginForm" action="#" method="post">
-          <div class="bm-login-field">
-            <label for="username"><i class="fa-solid fa-user bm-icon bm-icon-user" aria-hidden="true"></i> Username</label>
-            <input type="text" id="username" name="username" autocomplete="username" required>
-          </div>
-
-          <div class="bm-login-field">
-            <label for="password"><i class="fa-solid fa-lock bm-icon bm-icon-lock" aria-hidden="true"></i> Password</label>
-            <input type="password" id="password" name="password" autocomplete="current-password" required>
-          </div>
-
-          <button type="submit" class="bm-login-submit"><i class="fa-solid fa-right-to-bracket bm-icon bm-icon-login" aria-hidden="true"></i> Login</button>
-          <p id="loginMessage" class="bm-login-message" aria-live="polite"></p>
-        </form>
-
-        <div class="bm-login-demo">
-          <button type="button" data-login-as="admin"><i class="fa-solid fa-user-shield bm-icon bm-icon-admin" aria-hidden="true"></i> Admin Demo</button>
-          <button type="button" data-login-as="user"><i class="fa-solid fa-user-graduate bm-icon bm-icon-reader" aria-hidden="true"></i> User Demo</button>
-        </div>
-        <div class="bm-login-hint">
-          <span><i class="fa-solid fa-key bm-icon bm-icon-key" aria-hidden="true"></i> Admin: admin / admin123</span>
-          <span><i class="fa-solid fa-book bm-icon bm-icon-book" aria-hidden="true"></i> User: user / user123</span>
-        </div>
-      </div>
-    </section>
-  </main>
-
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
   <script src="JS/auth.js"></script>
   <script>
     window.BookManagement.auth.initLogin();

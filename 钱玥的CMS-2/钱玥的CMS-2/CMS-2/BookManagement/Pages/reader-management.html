@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -8,146 +8,13 @@
   <link rel="stylesheet" href="../CSS/auth.css">
 </head>
 <body class="bm-reader-page">
-  <h1>
-    <div class="header-title">
-      <img src="../Images/logo.png" alt="Logo" class="logo">
-      <i>Library Management System</i>
-    </div>
-    <div class="user-info">
-      <p>Admin: Teacher Zhang <button onclick="window.location.href='../../login.html'">Logout</button></p>
-    </div>
-  </h1>
+  <div id="layout-app"></div>
+  <div class="container" id="reader-app"></div>
 
-  <div class="menu">
-    <ul>
-      <li><a href="book-main.html">Home</a></li>
-      <li><a href="book-list.html">Book List</a></li>
-      <li><a href="add-book.html">Add New Book</a></li>
-      <li><a href="borrow-management.html">Borrow Management</a></li>
-      <li><a href="query-books.html">Book Query</a></li>
-      <li><a href="reader-management.html" class="active">Reader Management</a></li>
-      <li><a href="statistics.html">Statistics Report</a></li>
-    </ul>
-  </div>
-
-  <div class="container">
-    <!-- Add/Edit Reader Information Form -->
-    <div class="section">
-      <h2>Reader Information Entry</h2>
-      <form id="readerForm" action="#" method="post">
-        <div class="form-group">
-          <label for="readerId">Reader ID:</label>
-          <input type="text" id="readerId" name="readerId" readonly>
-        </div>
-
-        <div class="form-group">
-          <label for="readerName">Reader Name:</label>
-          <input type="text" id="readerName" name="readerName" required>
-        </div>
-
-        <div class="form-group">
-          <label for="idCard">ID Number:</label>
-          <input type="text" id="idCard" name="idCard" required>
-        </div>
-
-        <div class="form-group">
-          <label for="readerType">Reader Type:</label>
-          <select id="readerType" name="readerType" required>
-            <option value="">Please Select</option>
-            <option value="student">Student</option>
-            <option value="teacher">Teacher</option>
-            <option value="visitor">Visitor</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="contact">Contact:</label>
-          <input type="text" id="contact" name="contact" required>
-        </div>
-
-        <div class="form-group">
-          <label for="cardNumber">Library Card Number:</label>
-          <input type="text" id="cardNumber" name="cardNumber" readonly>
-        </div>
-
-        <div class="form-group">
-          <label for="barcode">Barcode:</label>
-          <input type="text" id="barcode" name="barcode" readonly>
-        </div>
-
-        <div class="form-group">
-          <label for="certified">Real-name Authentication:</label>
-          <select id="certified" name="certified" required>
-            <option value="no">Not Verified</option>
-            <option value="yes">Verified</option>
-          </select>
-        </div>
-
-        <div>
-          <button type="submit" class="btn">Save Reader Information</button>
-          <button type="reset" class="btn btn-secondary">Reset</button>
-        </div>
-      </form>
-    </div>
-
-    <!-- Reader List -->
-    <div class="section">
-      <h2>Reader Information List</h2>
-      <table id="readerTable">
-        <thead>
-          <tr>
-            <th>Reader ID</th>
-            <th>Reader Name</th>
-            <th>ID Number</th>
-            <th>Reader Type</th>
-            <th>Contact</th>
-            <th>Library Card Number</th>
-            <th>Barcode</th>
-            <th>Authentication</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Data Example -->
-          <tr>
-            <td>R001</td>
-            <td>Zhang San</td>
-            <td>110101199001011234</td>
-            <td>Student</td>
-            <td>13800000001</td>
-            <td>C001</td>
-            <td>B001</td>
-            <td>Verified</td>
-            <td class="action-buttons">
-              <button type="button" class="btn">Edit</button>
-              <button type="button" class="btn btn-danger">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>R002</td>
-            <td>Li Si</td>
-            <td>110101198505052345</td>
-            <td>Teacher</td>
-            <td>13800000002</td>
-            <td>C002</td>
-            <td>B002</td>
-            <td>Verified</td>
-            <td class="action-buttons">
-              <button type="button" class="btn">Edit</button>
-              <button type="button" class="btn btn-danger">Delete</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
   <script src="../JS/storage.js"></script>
-  <script src="../JS/ui.js"></script>
   <script src="../JS/auth.js"></script>
   <script src="../JS/business-rules.js"></script>
-  <script src="../JS/business-reports.js"></script>
-  <script src="../JS/data-tools.js"></script>
-  <script src="../JS/business-workflows.js"></script>
   <script src="../JS/books.js"></script>
   <script src="../JS/readers.js"></script>
   <script src="../JS/circulation.js"></script>
@@ -155,6 +22,3 @@
   <script src="../JS/app.js"></script>
 </body>
 </html>
-
-
-

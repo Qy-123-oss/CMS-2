@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -8,110 +8,15 @@
   <link rel="stylesheet" href="../CSS/auth.css">
 </head>
 <body class="bm-query-page">
-<h1>
-  <div class="header-title">
-    <img src="../Images/logo.png" alt="Logo" class="logo">
-    <i>Library Management System</i>
-  </div>
-  <div class="user-info">
-    <p>Admin: Teacher Zhang <button onclick="window.location.href='../../login.html'">Logout</button></p>
-  </div>
-</h1>
-
-  <div class="menu">
-    <h2>Menu</h2>
-    <ul>
-      <li><a href="book-main.html">Home</a></li>
-      <li><a href="book-list.html">Book List</a></li>
-      <li><a href="add-book.html">Add New Book</a></li>
-      <li><a href="borrow-management.html">Borrow Management</a></li>
-      <li><a href="query-books.html" class="active">Book Query</a></li>
-      <li><a href="reader-management.html">Reader Management</a></li>
-      <li><a href="statistics.html">Statistics Report</a></li>
-    </ul>
-  </div>
-
+  <div id="layout-app"></div>
   <div class="content-wrapper">
-    <div class="form-container">
-      <h2>Book Query</h2>
-      <form action="#" method="GET" id="searchForm">
-        <p>
-          <label for="search-type">Search Method:</label>
-          <select id="search-type" name="search-type">
-            <option value="book-name">Search by Book Title</option>
-            <option value="author">Search by Author</option>
-            <option value="isbn">Search by ISBN</option>
-          </select>
-        </p>
-
-        <p>
-          <label for="search-keyword">Search Keyword:</label>
-          <input type="text" id="search-keyword" name="search-keyword" required placeholder="Please enter search keyword">
-        </p>
-
-        <p>
-          <label for="search-mode">Search Mode:</label>
-          <select id="search-mode" name="search-mode">
-            <option value="fuzzy">Fuzzy Search</option>
-            <option value="exact">Exact Search</option>
-          </select>
-        </p>
-
-        <p>
-          <input type="submit" value="Start Search">
-        </p>
-      </form>
-    </div>
-
-    <div class="table-container">
-      <h2>Search Results</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>ISBN</th>
-            <th>Publisher</th>
-            <th>Location</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Computer Networking</td>
-            <td>Xie Xiren</td>
-            <td>9787111435623</td>
-            <td>Pearson Education</td>
-            <td>A-1-001</td>
-            <td>Available</td>
-          </tr>
-          <tr>
-            <td>Introduction to Algorithms</td>
-            <td>Thomas H. Cormen</td>
-            <td>9787111221847</td>
-            <td>Pearson Education</td>
-            <td>A-1-002</td>
-            <td>Borrowed</td>
-          </tr>
-          <tr>
-            <td>Computer Systems: A Programmer's Perspective</td>
-            <td>Randal E. Bryant</td>
-            <td>9787111435623</td>
-            <td>Pearson Education</td>
-            <td>A-1-003</td>
-            <td>Overdue</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <div id="book-query-app"></div>
   </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
   <script src="../JS/storage.js"></script>
-  <script src="../JS/ui.js"></script>
   <script src="../JS/auth.js"></script>
   <script src="../JS/business-rules.js"></script>
-  <script src="../JS/business-reports.js"></script>
-  <script src="../JS/data-tools.js"></script>
-  <script src="../JS/business-workflows.js"></script>
   <script src="../JS/books.js"></script>
   <script src="../JS/readers.js"></script>
   <script src="../JS/circulation.js"></script>
@@ -119,6 +24,3 @@
   <script src="../JS/app.js"></script>
 </body>
 </html>
-
-
-

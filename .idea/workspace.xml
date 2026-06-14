@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="af8d3880-32c1-487b-b8db-62673132b5d1" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/CSS/auth.css" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/CSS/auth.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/books.js" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/books.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/circulation.js" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/circulation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/data-tools.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/readers.js" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/readers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/statistics.js" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/statistics.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/ui.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/Pages/add-book.html" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/Pages/add-book.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/Pages/book-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/Pages/book-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/Pages/book-main.html" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/Pages/book-main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/Pages/borrow-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/Pages/borrow-management.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/Pages/query-books.html" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/Pages/query-books.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/Pages/reader-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/Pages/reader-management.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/Pages/statistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/Pages/statistics.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/login.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_D:/Users/QIANYUE/Documents/GitHub/CMS-2" value="3F7D4nFANtjyu5CxkDUezuLN2tK" />
+    </persistenceIdMap>
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="38" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Qy-123-oss&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Qy-123-oss/CMS-2.git&quot;,
+    &quot;accountId&quot;: &quot;439ffdae-9b3e-4499-9fb0-1d03bef4e7f6&quot;
+  }
+}</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0000000004436134" />
+      <entry key="MS500" value="1.014936508474665" />
+      <entry key="S2" value="1.5848880556248908" />
+      <entry key="S5" value="2.7839909047388858" />
+      <entry key="S10" value="4.539509083751851" />
+      <entry key="S30" value="8.632987416888469" />
+      <entry key="S60" value="10.82720468581194" />
+      <entry key="M2" value="12.279574331522994" />
+      <entry key="M5" value="14.184444053757359" />
+      <entry key="M10" value="17.696118160685934" />
+      <entry key="M15" value="21.78951881048957" />
+      <entry key="M30" value="35.09876947633226" />
+      <entry key="H1" value="54.24793792941653" />
+      <entry key="H2" value="72.16750016573322" />
+      <entry key="H4" value="84.81699324440677" />
+      <entry key="D1" value="98.01184444210726" />
+      <entry key="W1" value="100.56529971064528" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="0.0" />
+      <entry key="M2" value="0.0" />
+      <entry key="M5" value="0.0" />
+      <entry key="M10" value="0.0" />
+      <entry key="M15" value="0.0" />
+      <entry key="M30" value="0.0" />
+      <entry key="H1" value="0.0" />
+      <entry key="H2" value="0.0" />
+      <entry key="H4" value="0.0" />
+      <entry key="D1" value="0.0" />
+      <entry key="W1" value="0.0" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.817902058920613" />
+      <entry key="MS500" value="0.9749253488658123" />
+      <entry key="S2" value="1.5641966653365351" />
+      <entry key="S5" value="2.7339322131581247" />
+      <entry key="S10" value="4.465067006490245" />
+      <entry key="S30" value="8.567690005507329" />
+      <entry key="S60" value="10.783661430720011" />
+      <entry key="M2" value="12.254204570866898" />
+      <entry key="M5" value="14.172787150901001" />
+      <entry key="M10" value="17.689339735457764" />
+      <entry key="M15" value="21.78453173011516" />
+      <entry key="M30" value="35.0958505513088" />
+      <entry key="H1" value="54.24628482255401" />
+      <entry key="H2" value="72.16660167307562" />
+      <entry key="H4" value="84.81652133485083" />
+      <entry key="D1" value="98.01176211498633" />
+      <entry key="W1" value="100.56528785158632" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3F7D4nFANtjyu5CxkDUezuLN2tK" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "Vue-version",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "configurable.group.appearance",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.25134.95" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="af8d3880-32c1-487b-b8db-62673132b5d1" name="更改" comment="" />
+      <created>1781417024470</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1781417024470</updated>
+      <workItem from="1781417025828" duration="37000" />
+      <workItem from="1781417075585" duration="8133000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="Vue-version" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

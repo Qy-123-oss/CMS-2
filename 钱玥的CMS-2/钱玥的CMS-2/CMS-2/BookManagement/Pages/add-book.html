@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -8,78 +8,15 @@
   <link rel="stylesheet" href="../CSS/auth.css">
 </head>
 <body class="bm-add-book-page">
-<h1>
-  <div class="header-title">
-    <img src="../Images/logo.png" alt="Logo" class="logo">
-    <i>Library Management System</i>
-  </div>
-  <div class="user-info">
-    <p>Admin: Teacher Zhang <button onclick="window.location.href='../../login.html'">Logout</button></p>
-  </div>
-</h1>
-
-  <div class="menu">
-    <h2>Menu</h2>
-    <ul>
-      <li><a href="book-main.html">Home</a></li>
-      <li><a href="book-list.html">Book List</a></li>
-      <li><a href="add-book.html" class="active">Add New Book</a></li>
-      <li><a href="borrow-management.html">Borrow Management</a></li>
-      <li><a href="query-books.html">Book Query</a></li>
-      <li><a href="reader-management.html">Reader Management</a></li>
-      <li><a href="statistics.html">Statistics Report</a></li>
-    </ul>
-  </div>
-
+  <div id="layout-app"></div>
   <div class="content-wrapper">
-    <div class="form-container">
-      <h2>Add New Book Information</h2>
-
-      <form action="#" method="POST" id="addBookForm">
-        <p>
-          <label for="book-title">Title:</label>
-          <input type="text" id="book-title" name="book-title" required placeholder="Please enter the book title">
-        </p>
-
-        <p>
-          <label for="author">Author:</label>
-          <input type="text" id="author" name="author" required placeholder="Please enter the author">
-        </p>
-
-        <p>
-          <label for="isbn">ISBN:</label>
-          <input type="text" id="isbn" name="isbn" required placeholder="Please enter the ISBN">
-        </p>
-
-        <p>
-          <label for="publisher">Publisher:</label>
-          <input type="text" id="publisher" name="publisher" required placeholder="Please enter the publisher">
-        </p>
-
-        <p>
-          <label for="location">Location:</label>
-          <input type="text" id="location" name="location" required placeholder="Please enter the storage location">
-        </p>
-
-        <p>
-          <input type="submit" value="Save Book Information">
-        </p>
-      </form>
-
-      <!-- Insert image inside the card -->
-      <div class="image-container">
-        <img src="../Images/image.png" alt="Decorative Image" class="decorative-image">
-      </div>
-
-    </div>
+    <div id="book-add-app"></div>
   </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
   <script src="../JS/storage.js"></script>
-  <script src="../JS/ui.js"></script>
   <script src="../JS/auth.js"></script>
   <script src="../JS/business-rules.js"></script>
-  <script src="../JS/business-reports.js"></script>
-  <script src="../JS/data-tools.js"></script>
-  <script src="../JS/business-workflows.js"></script>
   <script src="../JS/books.js"></script>
   <script src="../JS/readers.js"></script>
   <script src="../JS/circulation.js"></script>
@@ -87,6 +24,3 @@
   <script src="../JS/app.js"></script>
 </body>
 </html>
-
-
-
