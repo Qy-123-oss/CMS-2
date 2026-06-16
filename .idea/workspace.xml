@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="af8d3880-32c1-487b-b8db-62673132b5d1" name="更改" comment="" />
+    <list default="true" id="af8d3880-32c1-487b-b8db-62673132b5d1" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/login.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,31 +20,90 @@
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="41" />
+    <option name="cachedIndexableFilesCount" value="44" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Qy-123-oss"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Qy-123-oss&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Qy-123-oss/CMS-2.git",
-    "accountId": "439ffdae-9b3e-4499-9fb0-1d03bef4e7f6"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Qy-123-oss/CMS-2.git&quot;,
+    &quot;accountId&quot;: &quot;439ffdae-9b3e-4499-9fb0-1d03bef4e7f6&quot;
   }
-}]]></component>
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6,
-  "fromUser": false
-}]]></component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0000045680245686" />
+      <entry key="MS500" value="1.0913675185142901" />
+      <entry key="S2" value="2.0250663861776665" />
+      <entry key="S5" value="3.725411160993049" />
+      <entry key="S10" value="5.418668304540185" />
+      <entry key="S30" value="7.480001252892634" />
+      <entry key="S60" value="8.188377455693473" />
+      <entry key="M2" value="8.580284575220503" />
+      <entry key="M5" value="8.899931307497308" />
+      <entry key="M10" value="10.622735659246022" />
+      <entry key="M15" value="13.870883537338837" />
+      <entry key="M30" value="23.185579530883114" />
+      <entry key="H1" value="33.12637114564645" />
+      <entry key="H2" value="40.45335040948581" />
+      <entry key="H4" value="44.91131067503757" />
+      <entry key="D1" value="49.104441602391724" />
+      <entry key="W1" value="49.8708505292995" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="0.0" />
+      <entry key="M2" value="0.0" />
+      <entry key="M5" value="0.0" />
+      <entry key="M10" value="0.0" />
+      <entry key="M15" value="0.0" />
+      <entry key="M30" value="0.0" />
+      <entry key="H1" value="0.0" />
+      <entry key="H2" value="0.0" />
+      <entry key="H4" value="0.0" />
+      <entry key="D1" value="0.0" />
+      <entry key="W1" value="0.0" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.9265921788248119" />
+      <entry key="MS500" value="1.074391011984192" />
+      <entry key="S2" value="2.015925661459872" />
+      <entry key="S5" value="3.7175475574690333" />
+      <entry key="S10" value="5.412586959277255" />
+      <entry key="S30" value="7.47710458961858" />
+      <entry key="S60" value="8.186780230283528" />
+      <entry key="M2" value="8.579444827390601" />
+      <entry key="M5" value="8.899581585535623" />
+      <entry key="M10" value="10.622519211382853" />
+      <entry key="M15" value="13.870686250078144" />
+      <entry key="M30" value="23.18540440648196" />
+      <entry key="H1" value="33.12624260076677" />
+      <entry key="H2" value="40.45327100125256" />
+      <entry key="H4" value="44.91126636137143" />
+      <entry key="D1" value="49.104433493674144" />
+      <entry key="W1" value="49.87084935202359" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6,
+  &quot;fromUser&quot;: false
+}</component>
   <component name="ProjectId" id="3F7D4nFANtjyu5CxkDUezuLN2tK" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -56,11 +122,22 @@
     "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Users/QIANYUE/Documents/GitHub/CMS-2/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/Images",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "configurable.group.appearance",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Users\QIANYUE\Documents\GitHub\CMS-2\钱玥的CMS-2\钱玥的CMS-2\CMS-2\BookManagement\Images" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -76,6 +153,7 @@
       <option name="presentableId" value="Default" />
       <updated>1781417024470</updated>
       <workItem from="1781417025828" duration="37000" />
+      <workItem from="1781620621238" duration="1375000" />
     </task>
     <servers />
   </component>

@@ -105,6 +105,11 @@
     location.href = mainPath();
   }
 
+  function visitFrontOffice() {
+    localStorage.removeItem(AUTH_KEY);
+    location.href = mainPath();
+  }
+
   // Public pages work like an official website. Operation pages require matching roles.
   function requireAuth() {
     if (page() === LOGIN_PAGE) {
@@ -205,5 +210,5 @@
     return true;
   }
 
-  BM.auth = { session: session, isAdmin: isAdmin, canAccess: canAccess, canUseBackOffice: canUseBackOffice, canManageBooks: canManageBooks, canDeleteBooks: canDeleteBooks, canResetData: canResetData, signIn: signIn, signOut: signOut, initLogin: initLogin, initPage: initPage };
+  BM.auth = { session: session, isAdmin: isAdmin, canAccess: canAccess, canUseBackOffice: canUseBackOffice, canManageBooks: canManageBooks, canDeleteBooks: canDeleteBooks, canResetData: canResetData, signIn: signIn, signOut: signOut, visitFrontOffice: visitFrontOffice, initLogin: initLogin, initPage: initPage };
 })();
