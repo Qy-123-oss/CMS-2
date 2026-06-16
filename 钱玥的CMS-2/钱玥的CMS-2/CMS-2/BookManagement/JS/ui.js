@@ -190,6 +190,100 @@
     return cell;
   }
 
+  function visualTone(value, fallback) {
+    var text = String(value || '').toLowerCase();
+    if (/overdue|urgent|shortage/.test(text)) { return 'red'; }
+    if (/waiting/.test(text)) { return 'gold'; }
+    if (/ready|notified|available|stable/.test(text)) { return 'green'; }
+    return fallback || 'blue';
+  }
+
+  function dashboardVisualCell(value, index, rowKey, row, visual, maxByColumn) {
+    var config = visual && visual[index];
+    var text = (typeof value === 'undefined' || value === null) ? '' : String(value);
+    var numeric = Number(text);
+    var cell;
+    var denominator;
+    var percent;
+    var tone;
+
+    if (!config) {
+      return dashboardCell(value, index, rowKey);
+    }
+
+    cell = el('td', { className: 'bm-visual-td' });
+    if (config.type === 'bar' && isFinite(numeric)) {
+      denominator = typeof config.denominator === 'function' ? config.denominator(value, index, row) : maxByColumn[index];
+      percent = denominator && numeric > 0 ? Math.max(4, Math.min(100, Math.round((numeric / denominator) * 100))) : 0;
+      tone = config.tone || 'blue';
+      cell.appendChild(el('div', { className: 'bm-data-bar bm-data-bar-' + tone }, [
+        el('span', { className: 'bm-data-bar-value', text: text }),
+        el('span', { className: 'bm-data-bar-track' }, [
+          el('span', { className: 'bm-data-bar-fill', style: 'width: ' + percent + '%' })
+        ])
+      ]));
+      return cell;
+    }
+
+    if (config.type === 'status') {
+      tone = visualTone(text, config.tone);
+      cell.appendChild(el('span', {
+        className: 'bm-status-chip bm-status-chip-' + tone + ' bm-cell-pill-row-' + rowKey,
+        text: text || '-'
+      }));
+      return cell;
+    }
+
+    return dashboardCell(value, index, rowKey);
+  }
+
+  function clampPercent(value) {
+    var number = Number(String(value || '').replace('%', ''));
+    if (!isFinite(number)) {
+      return 0;
+    }
+    return Math.max(0, Math.min(100, Math.round(number)));
+  }
+
+  function percentChart(title, value, note, tone) {
+    var percent = clampPercent(value);
+    var chart = el('article', {
+      className: 'bm-percent-card bm-percent-card-' + (tone || 'blue'),
+      style: '--bm-percent: ' + percent
+    });
+    chart.appendChild(el('div', { className: 'bm-percent-ring', 'aria-label': title + ' ' + percent + '%' }, [
+      el('strong', { text: percent + '%' })
+    ]));
+    chart.appendChild(el('div', { className: 'bm-percent-copy' }, [
+      el('span', { text: title }),
+      el('small', { text: note })
+    ]));
+    return chart;
+  }
+
+  function barChart(title, rows, tone) {
+    var max = rows.reduce(function (highest, row) {
+      return Math.max(highest, Number(row.value || 0));
+    }, 0);
+    var chart = el('section', { className: 'bm-chart-panel bm-chart-panel-' + (tone || 'blue') });
+    chart.appendChild(el('div', { className: 'bm-chart-title' }, [
+      el('h3', { text: title }),
+      el('span', { text: rows.length + ' items' })
+    ]));
+    chart.appendChild(el('div', { className: 'bm-bar-chart' }, rows.map(function (row) {
+      var value = Number(row.value || 0);
+      var percent = max ? Math.max(4, Math.min(100, Math.round((value / max) * 100))) : 0;
+      return el('div', { className: 'bm-chart-row' }, [
+        el('span', { className: 'bm-chart-label', text: row.label }),
+        el('span', { className: 'bm-chart-track' }, [
+          el('span', { className: 'bm-chart-fill', style: 'width: ' + (value > 0 ? percent : 0) + '%' })
+        ]),
+        el('strong', { className: 'bm-chart-value', text: String(value) })
+      ]);
+    })));
+    return chart;
+  }
+
   function bookTableCell(value, index) {
     var text = (typeof value === 'undefined' || value === null) ? '' : String(value);
     var cell = el('td');
@@ -520,18 +614,31 @@
 
     var split = el('div', { className: 'bm-dashboard-grid' });
 
-    function miniTable(title, heads, rows) {
+    function miniTable(title, heads, rows, visual) {
+      var maxByColumn = {};
       var box = el('section', { className: 'bm-data-panel' });
       var titleBar = el('div', { className: 'bm-data-panel-title' });
       titleBar.appendChild(el('h3', { text: title }));
       titleBar.appendChild(el('span', { text: rows.length + ' records' }));
       box.appendChild(titleBar);
-      var table = el('table', { className: 'bm-dashboard-table' });
+      var table = el('table', { className: 'bm-dashboard-table bm-dashboard-visual-table' });
       table.appendChild(el('thead', {}, [el('tr', {}, heads.map(function (head) { return el('th', { text: head }); }))]));
       var body = el('tbody');
+      Object.keys(visual || {}).forEach(function (key) {
+        var index = Number(key);
+        if (visual[index].type !== 'bar') {
+          return;
+        }
+        maxByColumn[index] = rows.reduce(function (max, row) {
+          var value = Number(row[index]);
+          return isFinite(value) ? Math.max(max, value) : max;
+        }, 0);
+      });
       rows.forEach(function (row) {
         var rowKey = pillClass(row[0]);
-        body.appendChild(el('tr', {}, row.map(function (cell, index) { return dashboardCell(cell, index, rowKey); })));
+        body.appendChild(el('tr', {}, row.map(function (cell, index) {
+          return dashboardVisualCell(cell, index, rowKey, row, visual, maxByColumn);
+        })));
       });
       if (!rows.length) {
         empty(body, heads.length, 'No data.');
@@ -564,10 +671,38 @@
       return [item.bookTitle, item.readerName, item.status];
     });
 
-    split.appendChild(miniTable('Inventory by Type', ['Type', 'Copies', 'Can Borrow', 'Out'], typeRows));
-    split.appendChild(miniTable('Popular Books', ['Title', 'Borrows', 'Can Borrow'], popularRows));
-    split.appendChild(miniTable('Overdue Alerts', ['Title', 'Reader', 'Due Date'], overdueRows));
-    split.appendChild(miniTable('Reservation Queue', ['Title', 'Reader', 'Status'], reserveRows));
+    var chartGrid = el('div', { className: 'bm-chart-grid' });
+    var borrowedRate = summary.totalInventory ? Math.round((summary.borrowedCopies / summary.totalInventory) * 100) : 0;
+    var availableRate = summary.totalInventory ? Math.round((summary.borrowableCopies / summary.totalInventory) * 100) : 0;
+    var overdueRate = summary.borrowedCopies ? Math.round((summary.overdueBooks / summary.borrowedCopies) * 100) : 0;
+    chartGrid.appendChild(el('section', { className: 'bm-percent-panel' }, [
+      percentChart('Borrowed Copies', borrowedRate, 'Share of total inventory currently on loan', 'orange'),
+      percentChart('Borrowable Copies', availableRate, 'Share of total inventory ready to lend', 'green'),
+      percentChart('Overdue Rate', overdueRate, 'Overdue share among active loans', 'red')
+    ]));
+    chartGrid.appendChild(barChart('Inventory Column Chart', typeRows.map(function (row) {
+      return { label: row[0], value: row[1] };
+    }), 'blue'));
+    chartGrid.appendChild(barChart('Popular Borrowing Chart', popularRows.map(function (row) {
+      return { label: row[0], value: row[1] };
+    }), 'violet'));
+    panel.appendChild(chartGrid);
+
+    split.appendChild(miniTable('Inventory by Type', ['Type', 'Copies', 'Can Borrow', 'Out'], typeRows, {
+      1: { type: 'bar', tone: 'blue', denominator: function () { return summary.totalInventory; } },
+      2: { type: 'bar', tone: 'green', denominator: function (value, index, row) { return Number(row[1] || 0); } },
+      3: { type: 'bar', tone: 'gold', denominator: function (value, index, row) { return Number(row[1] || 0); } }
+    }));
+    split.appendChild(miniTable('Popular Books', ['Title', 'Borrows', 'Can Borrow'], popularRows, {
+      1: { type: 'bar', tone: 'violet' },
+      2: { type: 'bar', tone: 'green' }
+    }));
+    split.appendChild(miniTable('Overdue Alerts', ['Title', 'Reader', 'Due Date'], overdueRows, {
+      2: { type: 'status', tone: 'red' }
+    }));
+    split.appendChild(miniTable('Reservation Queue', ['Title', 'Reader', 'Status'], reserveRows, {
+      2: { type: 'status', tone: 'violet' }
+    }));
     panel.appendChild(split);
 
     var list = el('ul');

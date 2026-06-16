@@ -114,6 +114,162 @@
   gap: 16px;
 }
 
+.bm-chart-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.9fr) repeat(2, minmax(260px, 1fr));
+  gap: 16px;
+  margin: 6px 0 20px 0;
+}
+
+.bm-percent-panel,
+.bm-chart-panel {
+  min-width: 0;
+  border: 1px solid rgba(148, 184, 197, 0.24);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 14px 30px rgba(57, 103, 119, 0.08);
+  box-sizing: border-box;
+}
+
+.bm-percent-panel {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+}
+
+.bm-percent-card {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+}
+
+.bm-percent-ring {
+  width: 74px;
+  height: 74px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, #ffffff 0 54%, transparent 55%),
+    conic-gradient(#409eff calc(var(--bm-percent) * 1%), rgba(216, 229, 235, 0.86) 0);
+  box-shadow: inset 0 0 0 1px rgba(149, 185, 198, 0.2), 0 8px 16px rgba(65, 115, 130, 0.08);
+}
+
+.bm-percent-card-green .bm-percent-ring {
+  background:
+    radial-gradient(circle at center, #ffffff 0 54%, transparent 55%),
+    conic-gradient(#2aa66f calc(var(--bm-percent) * 1%), rgba(216, 229, 235, 0.86) 0);
+}
+
+.bm-percent-card-orange .bm-percent-ring {
+  background:
+    radial-gradient(circle at center, #ffffff 0 54%, transparent 55%),
+    conic-gradient(#e6a23c calc(var(--bm-percent) * 1%), rgba(216, 229, 235, 0.86) 0);
+}
+
+.bm-percent-card-red .bm-percent-ring {
+  background:
+    radial-gradient(circle at center, #ffffff 0 54%, transparent 55%),
+    conic-gradient(#f56c6c calc(var(--bm-percent) * 1%), rgba(216, 229, 235, 0.86) 0);
+}
+
+.bm-percent-ring strong {
+  color: #233d48;
+  font-size: 17px;
+  line-height: 1;
+}
+
+.bm-percent-copy span {
+  display: block;
+  color: #253b44;
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.3;
+}
+
+.bm-percent-copy small {
+  display: block;
+  margin-top: 4px;
+  color: #6f8791;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.bm-chart-panel {
+  padding: 16px;
+}
+
+.bm-chart-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.bm-chart-title h3 {
+  margin: 0;
+  color: #253b44;
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.bm-chart-title span {
+  color: #78909c;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.bm-bar-chart {
+  display: grid;
+  gap: 10px;
+}
+
+.bm-chart-row {
+  display: grid;
+  grid-template-columns: minmax(92px, 1.1fr) minmax(90px, 2fr) minmax(34px, auto);
+  align-items: center;
+  gap: 10px;
+}
+
+.bm-chart-label {
+  min-width: 0;
+  overflow: hidden;
+  color: #4f6874;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bm-chart-track {
+  display: block;
+  height: 16px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(211, 225, 232, 0.66);
+  box-shadow: inset 0 1px 2px rgba(55, 86, 96, 0.12);
+}
+
+.bm-chart-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #8fd1ff 0%, #2f8fe8 100%);
+}
+
+.bm-chart-panel-violet .bm-chart-fill {
+  background: linear-gradient(90deg, #c6b8ff 0%, #7661d8 100%);
+}
+
+.bm-chart-value {
+  color: #233d48;
+  font-size: 12px;
+  text-align: right;
+}
+
 .bm-data-panel {
   background: #ffffff;
   border: 1px solid #e4e7ed;
@@ -172,6 +328,111 @@
 
 .bm-dashboard-table tbody tr:hover {
   background: #f7fbff;
+}
+
+.bm-dashboard-visual-table td {
+  vertical-align: middle;
+}
+
+.bm-visual-td {
+  min-width: 118px;
+}
+
+.bm-data-bar {
+  display: grid;
+  grid-template-columns: minmax(32px, auto) minmax(70px, 1fr);
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.bm-data-bar-value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  min-height: 24px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(149, 185, 198, 0.32);
+  background: rgba(255, 255, 255, 0.86);
+  color: #2f4d57;
+  font-weight: 750;
+  line-height: 1.2;
+  box-sizing: border-box;
+}
+
+.bm-data-bar-track {
+  position: relative;
+  display: block;
+  height: 9px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(211, 225, 232, 0.66);
+  box-shadow: inset 0 1px 2px rgba(55, 86, 96, 0.12);
+}
+
+.bm-data-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #6bb7ff 0%, #2f8fe8 100%);
+  box-shadow: 0 0 12px rgba(47, 143, 232, 0.24);
+}
+
+.bm-data-bar-green .bm-data-bar-fill {
+  background: linear-gradient(90deg, #74d9a4 0%, #2aa66f 100%);
+  box-shadow: 0 0 12px rgba(42, 166, 111, 0.22);
+}
+
+.bm-data-bar-gold .bm-data-bar-fill {
+  background: linear-gradient(90deg, #ffd879 0%, #e5a333 100%);
+  box-shadow: 0 0 12px rgba(229, 163, 51, 0.24);
+}
+
+.bm-data-bar-violet .bm-data-bar-fill {
+  background: linear-gradient(90deg, #b8a1ff 0%, #7661d8 100%);
+  box-shadow: 0 0 12px rgba(118, 97, 216, 0.22);
+}
+
+.bm-status-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(149, 185, 198, 0.32);
+  background: rgba(255, 255, 255, 0.88);
+  color: #395b66;
+  font-size: 12px;
+  font-weight: 750;
+  line-height: 1.2;
+  white-space: nowrap;
+  box-shadow: 0 6px 14px rgba(65, 115, 130, 0.08);
+}
+
+.bm-status-chip-red {
+  color: #9a3b45;
+  background: linear-gradient(135deg, #ffffff 0%, #fff0f2 54%, #ffdfe4 100%);
+  border-color: rgba(230, 132, 148, 0.32);
+}
+
+.bm-status-chip-gold {
+  color: #8a5b11;
+  background: linear-gradient(135deg, #ffffff 0%, #fff5dd 54%, #ffe3a8 100%);
+  border-color: rgba(206, 153, 52, 0.32);
+}
+
+.bm-status-chip-green {
+  color: #187060;
+  background: linear-gradient(135deg, #ffffff 0%, #e3fbf3 54%, #c8f0e3 100%);
+  border-color: rgba(70, 176, 145, 0.32);
+}
+
+.bm-status-chip-violet {
+  color: #5e4c89;
+  background: linear-gradient(135deg, #ffffff 0%, #f4efff 54%, #e4dcff 100%);
+  border-color: rgba(136, 112, 190, 0.32);
 }
 
 .bm-dashboard > h3 {
@@ -235,6 +496,14 @@
 
   .bm-dashboard-grid {
     grid-template-columns: 1fr;
+  }
+
+  .bm-chart-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bm-data-bar {
+    grid-template-columns: minmax(34px, auto) minmax(56px, 1fr);
   }
 }
 
