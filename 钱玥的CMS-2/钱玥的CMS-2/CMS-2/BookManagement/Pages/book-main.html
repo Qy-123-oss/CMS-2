@@ -32,9 +32,23 @@
     </ul>
   </div>
 
-  <!-- Insert school2.jpg image below the navigation bar and next to the sidebar -->
-  <div class="school-image-container">
-    <img src="../Images/school2.jpg" alt="School Image" class="school-image">
+  <div class="school-image-container library-carousel" aria-label="Library image carousel">
+    <div class="library-carousel-track">
+      <img src="../Images/school2.jpg" alt="School view" class="school-image library-carousel-slide active">
+      <img src="../Images/图书馆1.jpg" alt="Library view 1" class="school-image library-carousel-slide">
+      <img src="../Images/图书馆2.jpg" alt="Library view 2" class="school-image library-carousel-slide">
+      <img src="../Images/图书馆3.jpg" alt="Library view 3" class="school-image library-carousel-slide">
+      <img src="../Images/图书馆4.jpg" alt="Library view 4" class="school-image library-carousel-slide">
+    </div>
+    <button type="button" class="library-carousel-btn library-carousel-prev" aria-label="Previous library image">&#8249;</button>
+    <button type="button" class="library-carousel-btn library-carousel-next" aria-label="Next library image">&#8250;</button>
+    <div class="library-carousel-dots" aria-label="Library carousel navigation">
+      <button type="button" class="active" aria-label="Show school image"></button>
+      <button type="button" aria-label="Show library image 1"></button>
+      <button type="button" aria-label="Show library image 2"></button>
+      <button type="button" aria-label="Show library image 3"></button>
+      <button type="button" aria-label="Show library image 4"></button>
+    </div>
   </div>
 
   <div class="content-wrapper">
@@ -77,6 +91,60 @@
   <script src="../JS/circulation.js"></script>
   <script src="../JS/statistics.js"></script>
   <script src="../JS/app.js"></script>
+  <script>
+    (function () {
+      var carousel = document.querySelector('.library-carousel');
+      if (!carousel) {
+        return;
+      }
+
+      var slides = Array.prototype.slice.call(carousel.querySelectorAll('.library-carousel-slide'));
+      var dots = Array.prototype.slice.call(carousel.querySelectorAll('.library-carousel-dots button'));
+      var prev = carousel.querySelector('.library-carousel-prev');
+      var next = carousel.querySelector('.library-carousel-next');
+      var current = 0;
+      var timer;
+
+      function showSlide(index) {
+        current = (index + slides.length) % slides.length;
+        slides.forEach(function (slide, slideIndex) {
+          slide.classList.toggle('active', slideIndex === current);
+        });
+        dots.forEach(function (dot, dotIndex) {
+          dot.classList.toggle('active', dotIndex === current);
+        });
+      }
+
+      function start() {
+        timer = window.setInterval(function () {
+          showSlide(current + 1);
+        }, 3800);
+      }
+
+      function restart() {
+        window.clearInterval(timer);
+        start();
+      }
+
+      prev.addEventListener('click', function () {
+        showSlide(current - 1);
+        restart();
+      });
+      next.addEventListener('click', function () {
+        showSlide(current + 1);
+        restart();
+      });
+      dots.forEach(function (dot, index) {
+        dot.addEventListener('click', function () {
+          showSlide(index);
+          restart();
+        });
+      });
+
+      showSlide(0);
+      start();
+    })();
+  </script>
 </body>
 </html>
 
