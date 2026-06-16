@@ -53,6 +53,11 @@
   color: #b26a00;
 }
 
+.bm-role-librarian {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
 .bm-role-user {
   background: #e8f5e9;
   color: #2e7d32;
@@ -537,6 +542,11 @@ body:not(.bm-login-body) .bm-role-badge {
 body:not(.bm-login-body) .bm-role-admin {
   color: #a26008;
   background: linear-gradient(135deg, #fff8e7, #ffe1a8);
+}
+
+body:not(.bm-login-body) .bm-role-librarian {
+  color: #155d87;
+  background: linear-gradient(135deg, #edf8ff, #bde8ff);
 }
 
 body:not(.bm-login-body) .bm-role-user {
@@ -1028,11 +1038,17 @@ body.bm-book-list-page:not(.bm-login-body) table.bm-readonly-table td:last-child
 }
 
 body.bm-book-list-page:not(.bm-login-body) table.bm-actions-table td:last-child {
+  display: table-cell !important;
+  min-width: 190px;
+  vertical-align: middle;
+}
+
+body.bm-book-list-page:not(.bm-login-body) .bm-action-buttons {
   display: grid;
   grid-template-columns: repeat(2, minmax(78px, 1fr));
   align-items: center;
-  justify-items: stretch;
   gap: 8px;
+  width: 100%;
 }
 
 body.bm-book-list-page:not(.bm-login-body) .edit-btn,
@@ -1068,10 +1084,10 @@ body.bm-book-list-page:not(.bm-login-body) .relocate-btn {
   background: linear-gradient(135deg, #ffc969 0%, #e6a23c 52%, #d08a24 100%);
 }
 
-body.bm-book-list-page:not(.bm-login-body) table.bm-actions-table td:last-child .edit-btn,
-body.bm-book-list-page:not(.bm-login-body) table.bm-actions-table td:last-child .delete-btn,
-body.bm-book-list-page:not(.bm-login-body) table.bm-actions-table td:last-child .scrap-btn,
-body.bm-book-list-page:not(.bm-login-body) table.bm-actions-table td:last-child .relocate-btn {
+body.bm-book-list-page:not(.bm-login-body) .bm-action-buttons .edit-btn,
+body.bm-book-list-page:not(.bm-login-body) .bm-action-buttons .delete-btn,
+body.bm-book-list-page:not(.bm-login-body) .bm-action-buttons .scrap-btn,
+body.bm-book-list-page:not(.bm-login-body) .bm-action-buttons .relocate-btn {
   width: 100%;
 }
 

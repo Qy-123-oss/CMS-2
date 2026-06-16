@@ -141,7 +141,7 @@
   }
 
   function resetButton() {
-    if (BM.auth && !BM.auth.isAdmin()) {
+    if (BM.auth && !BM.auth.canResetData()) {
       return;
     }
     var host = qs('.user-info p');
@@ -472,14 +472,14 @@
     var header = el('div', { className: 'bm-dashboard-header' });
     var heading = el('div');
     heading.appendChild(el('p', { className: 'bm-dashboard-kicker', text: 'Library Overview' }));
-    heading.appendChild(el('h2', { text: (BM.auth && !BM.auth.isAdmin()) ? 'Reader Service Portal' : 'Real-time Operation Panel' }));
-    heading.appendChild(el('p', { className: 'bm-dashboard-subtitle', text: (BM.auth && !BM.auth.isAdmin()) ? 'Front-office catalog view for book discovery and availability checks.' : 'Live data from localStorage, including collection, circulation, readers and reservation status.' }));
+    heading.appendChild(el('h2', { text: (BM.auth && !BM.auth.canUseBackOffice()) ? 'Reader Service Portal' : 'Real-time Operation Panel' }));
+    heading.appendChild(el('p', { className: 'bm-dashboard-subtitle', text: (BM.auth && !BM.auth.canUseBackOffice()) ? 'Front-office catalog view for book discovery and availability checks.' : 'Live data from localStorage, including collection, circulation, readers and reservation status.' }));
     header.appendChild(heading);
     header.appendChild(el('div', { className: 'bm-dashboard-date', text: 'Updated ' + new Date().toLocaleString() }));
     panel.appendChild(header);
 
     var grid = el('div', { className: 'bm-metric-grid' });
-    (BM.auth && !BM.auth.isAdmin() ? [
+    (BM.auth && !BM.auth.canUseBackOffice() ? [
       ['Total Titles', summary.totalBooks, 'Collection size', 'blue'],
       ['Total Copies', summary.totalInventory, 'All physical copies', 'green'],
       ['Borrowable Titles', summary.availableBooks, 'Titles currently available', 'teal'],
@@ -505,7 +505,7 @@
     });
     panel.appendChild(grid);
 
-    if (BM.auth && !BM.auth.isAdmin()) {
+    if (BM.auth && !BM.auth.canUseBackOffice()) {
       var publicPanel = ensurePanel(wrapper, 'bm-public-actions', '');
       clear(publicPanel);
       publicPanel.className = 'bm-dashboard bm-public-actions';
@@ -594,32 +594,35 @@
       });
       if (actions) {
         var actionCell = el('td');
-        actionCell.appendChild(button('Edit', 'edit-btn', function () { location.href = 'add-book.html?edit=' + encodeURIComponent(book.id); }));
-        actionCell.appendChild(button('Delete', 'delete-btn', function () {
-          if (!confirm('Delete book "' + book.title + '"?')) {
-            return;
-          }
-          try {
-            store.deleteBook(book.id);
-            toast('Book deleted.');
-            renderBookList();
-          } catch (error) {
-            handle(error);
-          }
-        }));
-        actionCell.appendChild(button('Scrap', 'scrap-btn', function () {
-          if (!confirm('Scrap book "' + book.title + '"?')) {
-            return;
-          }
-          try {
-            store.scrapBook(book.id);
-            toast('Book scrapped.');
-            renderBookList();
-          } catch (error) {
-            handle(error);
-          }
-        }));
-        actionCell.appendChild(button('Relocate', 'relocate-btn', function () {
+        var actionButtons = el('div', { className: 'bm-action-buttons' });
+        actionButtons.appendChild(button('Edit', 'edit-btn', function () { location.href = 'add-book.html?edit=' + encodeURIComponent(book.id); }));
+        if (BM.auth && BM.auth.canDeleteBooks()) {
+          actionButtons.appendChild(button('Delete', 'delete-btn', function () {
+            if (!confirm('Delete book "' + book.title + '"?')) {
+              return;
+            }
+            try {
+              store.deleteBook(book.id);
+              toast('Book deleted.');
+              renderBookList();
+            } catch (error) {
+              handle(error);
+            }
+          }));
+          actionButtons.appendChild(button('Scrap', 'scrap-btn', function () {
+            if (!confirm('Scrap book "' + book.title + '"?')) {
+              return;
+            }
+            try {
+              store.scrapBook(book.id);
+              toast('Book scrapped.');
+              renderBookList();
+            } catch (error) {
+              handle(error);
+            }
+          }));
+        }
+        actionButtons.appendChild(button('Relocate', 'relocate-btn', function () {
           var locationValue = prompt('Input new location:', book.location);
           if (locationValue === null) {
             return;
@@ -632,6 +635,7 @@
             handle(error);
           }
         }));
+        actionCell.appendChild(actionButtons);
         row.appendChild(actionCell);
       }
       tbody.appendChild(row);
@@ -645,7 +649,7 @@
     var state = store.load();
     store.refresh(state);
     store.save(state);
-    var hasActions = !!(BM.auth && BM.auth.isAdmin());
+    var hasActions = !!(BM.auth && BM.auth.canManageBooks());
     var table = qs('table');
     var headerRow = qs('table thead tr');
     var headers = qsa('th', headerRow);

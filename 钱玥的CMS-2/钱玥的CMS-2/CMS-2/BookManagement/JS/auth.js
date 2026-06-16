@@ -8,15 +8,16 @@
   var LOGIN_PAGE = 'login.html';
   var accounts = [
     { username: 'admin', password: 'admin123', role: 'admin', name: 'Teacher Zhang' },
+    { username: 'librarian', password: 'lib123', role: 'librarian', name: 'Library Staff' },
     { username: 'user', password: 'user123', role: 'user', name: 'Student User' }
   ];
 
-  // Pages that require admin role to access
-  var adminPages = {
-    'add-book.html': true,
-    'borrow-management.html': true,
-    'reader-management.html': true,
-    'statistics.html': true
+  // Public pages need no login. Pages listed here require one of the allowed roles.
+  var pageRoles = {
+    'add-book.html': ['admin', 'librarian'],
+    'borrow-management.html': ['admin', 'librarian'],
+    'reader-management.html': ['admin', 'librarian'],
+    'statistics.html': ['admin']
   };
 
   // Safely parse JSON string, return fallback value if parsing fails
@@ -53,6 +54,35 @@
     return !!current && current.role === 'admin';
   }
 
+  function hasRole(roles) {
+    var current = session();
+    return !!current && roles.indexOf(current.role) !== -1;
+  }
+
+  function canAccess(pageName) {
+    var allowed = pageRoles[String(pageName || '').toLowerCase()];
+    if (!allowed) {
+      return true;
+    }
+    return hasRole(allowed);
+  }
+
+  function canUseBackOffice() {
+    return hasRole(['admin', 'librarian']);
+  }
+
+  function canManageBooks() {
+    return hasRole(['admin', 'librarian']);
+  }
+
+  function canDeleteBooks() {
+    return isAdmin();
+  }
+
+  function canResetData() {
+    return isAdmin();
+  }
+
   function signIn(username, password) {
     var normalized = String(username || '').trim();
     var match = accounts.filter(function (account) {
@@ -75,18 +105,18 @@
     location.href = mainPath();
   }
 
-  // Public pages work like an official website. Only admin operation pages require login.
+  // Public pages work like an official website. Operation pages require matching roles.
   function requireAuth() {
     if (page() === LOGIN_PAGE) {
       return true;
     }
     var current = session();
-    if (adminPages[page()]) {
+    if (pageRoles[page()]) {
       if (!current) {
         location.href = loginPath();
         return false;
       }
-      if (current.role !== 'admin') {
+      if (!canAccess(page())) {
         location.href = 'book-main.html';
         return false;
       }
@@ -117,10 +147,10 @@
     }
     var label = document.createElement('span');
     label.className = 'bm-user-label';
-    label.textContent = (current.role === 'admin' ? 'Admin' : 'User') + ': ' + current.name;
+    label.textContent = roleLabel(current.role) + ': ' + current.name;
     var badge = document.createElement('span');
     badge.className = 'bm-role-badge bm-role-' + current.role;
-    badge.textContent = current.role === 'admin' ? 'Back Office' : 'Front Office';
+    badge.textContent = current.role === 'admin' ? 'System Admin' : current.role === 'librarian' ? 'Library Operator' : 'Front Office';
     var logout = document.createElement('button');
     logout.type = 'button';
     logout.textContent = 'Logout';
@@ -129,15 +159,15 @@
     host.appendChild(badge);
     host.appendChild(logout);
   }
-  //hide menu items for non-admin users
+  function roleLabel(role) {
+    return role === 'admin' ? 'Admin' : role === 'librarian' ? 'Librarian' : 'User';
+  }
+
+  // Hide menu items when the current role cannot access the target page.
   function filterMenu() {
-    var current = session();
-    if (current && current.role === 'admin') {
-      return;
-    }
     Array.prototype.slice.call(document.querySelectorAll('.menu a')).forEach(function (link) {
       var target = (link.getAttribute('href') || '').toLowerCase();
-      if (adminPages[target]) {
+      if (!canAccess(target)) {
         link.parentNode.style.display = 'none';
       }
     });
@@ -164,14 +194,6 @@
         }
       }
     });
-    // quick login buttons
-    Array.prototype.slice.call(document.querySelectorAll('[data-login-as]')).forEach(function (button) {
-      button.addEventListener('click', function () {
-        var role = button.getAttribute('data-login-as');
-        document.querySelector('#username').value = role === 'admin' ? 'admin' : 'user';
-        document.querySelector('#password').value = role === 'admin' ? 'admin123' : 'user123';
-      });
-    });
   }
 
   function initPage() {
@@ -183,5 +205,5 @@
     return true;
   }
 
-  BM.auth = { session: session, isAdmin: isAdmin, signIn: signIn, signOut: signOut, initLogin: initLogin, initPage: initPage };
+  BM.auth = { session: session, isAdmin: isAdmin, canAccess: canAccess, canUseBackOffice: canUseBackOffice, canManageBooks: canManageBooks, canDeleteBooks: canDeleteBooks, canResetData: canResetData, signIn: signIn, signOut: signOut, initLogin: initLogin, initPage: initPage };
 })();
