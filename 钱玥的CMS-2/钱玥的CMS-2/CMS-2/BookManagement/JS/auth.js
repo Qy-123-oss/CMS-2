@@ -72,22 +72,24 @@
 // Sign out the current user by removing session info from localStorage and redirecting to login page
   function signOut() {
     localStorage.removeItem(AUTH_KEY);
-    location.href = loginPath();
+    location.href = mainPath();
   }
 
-  //Check if user is authenticated and has permission to access current page, redirect to login page if not authenticated, or main page if not authorized
+  // Public pages work like an official website. Only admin operation pages require login.
   function requireAuth() {
     if (page() === LOGIN_PAGE) {
       return true;
     }
     var current = session();
-    if (!current) {
-      location.href = loginPath();
-      return false;
-    }
-    if (adminPages[page()] && current.role !== 'admin') {
-      location.href = 'book-main.html';
-      return false;
+    if (adminPages[page()]) {
+      if (!current) {
+        location.href = loginPath();
+        return false;
+      }
+      if (current.role !== 'admin') {
+        location.href = 'book-main.html';
+        return false;
+      }
     }
     return true;
   }
@@ -95,10 +97,24 @@
   function renderUser() {
     var current = session();
     var host = document.querySelector('.user-info p');
-    if (!current || !host) {
+    if (!host) {
       return;
     }
     host.innerHTML = '';
+    if (!current) {
+      var publicLabel = document.createElement('span');
+      publicLabel.className = 'bm-user-label';
+      publicLabel.textContent = 'Public Visitor';
+      var login = document.createElement('button');
+      login.type = 'button';
+      login.textContent = 'Admin Login';
+      login.addEventListener('click', function () {
+        location.href = loginPath();
+      });
+      host.appendChild(publicLabel);
+      host.appendChild(login);
+      return;
+    }
     var label = document.createElement('span');
     label.className = 'bm-user-label';
     label.textContent = (current.role === 'admin' ? 'Admin' : 'User') + ': ' + current.name;
@@ -116,7 +132,7 @@
   //hide menu items for non-admin users
   function filterMenu() {
     var current = session();
-    if (!current || current.role === 'admin') {
+    if (current && current.role === 'admin') {
       return;
     }
     Array.prototype.slice.call(document.querySelectorAll('.menu a')).forEach(function (link) {

@@ -645,7 +645,7 @@
     var state = store.load();
     store.refresh(state);
     store.save(state);
-    var hasActions = !(BM.auth && !BM.auth.isAdmin());
+    var hasActions = !!(BM.auth && BM.auth.isAdmin());
     var table = qs('table');
     var headerRow = qs('table thead tr');
     var headers = qsa('th', headerRow);
