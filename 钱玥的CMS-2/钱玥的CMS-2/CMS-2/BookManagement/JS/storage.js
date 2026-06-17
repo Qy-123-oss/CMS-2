@@ -91,7 +91,7 @@
 //Define initial data for books and readers to populate the library system with some sample entries
   function seedBooks() {
     return [
-      { id: 'B001', title: 'Computer Networking', author: 'Xie Xiren', isbn: '9787111435623', publisher: 'Pearson Education', location: 'A-1-001', status: 'Available', type: 'Computer Science', inventory: 5, available: 4, borrowCount: 42, demand: 7, createdAt: addDays(-140), updatedAt: addDays(-2), note: '' },
+      { id: 'B001', title: 'Computer Networking', author: 'Xie Xiren', isbn: '9787111435623', publisher: 'Pearson Education', location: 'A-1-001', status: 'Available', type: 'Computer Science', inventory: 5, available: 4, borrowCount: 42, demand: 7, createdAt: addDays(-140), updatedAt: addDays(-2), note: '', coverImage: '../Images/Computer Network.jpg' },
       { id: 'B002', title: 'Introduction to Algorithms', author: 'Thomas H. Cormen', isbn: '9787111221847', publisher: 'Pearson Education', location: 'A-1-002', status: 'Borrowed', type: 'Computer Science', inventory: 4, available: 3, borrowCount: 38, demand: 6, createdAt: addDays(-138), updatedAt: addDays(-4), note: '' },
       { id: 'B003', title: "Computer Systems: A Programmer's Perspective", author: 'Randal E. Bryant', isbn: '9787111435624', publisher: 'Pearson Education', location: 'A-1-003', status: 'Overdue', type: 'Computer Science', inventory: 3, available: 2, borrowCount: 35, demand: 8, createdAt: addDays(-136), updatedAt: addDays(-6), note: '' },
       { id: 'B004', title: 'Core Java Technologies', author: 'Cay S. Horstmann', isbn: '9787111547425', publisher: 'China Machine Press', location: 'A-2-001', status: 'Available', type: 'Computer Science', inventory: 4, available: 4, borrowCount: 30, demand: 5, createdAt: addDays(-120), updatedAt: addDays(-7), note: '' },
@@ -272,6 +272,19 @@
         state.books.push(book);
         activity(state, 'Book', 'Added book: ' + book.title);
       }
+      return refresh(state);
+    });
+  }
+
+  function saveBookCover(bookId, coverImage) {
+    return update(function (state) {
+      var book = bookById(state, bookId);
+      if (!book) {
+        throw new Error('Book not found.');
+      }
+      book.coverImage = normalize(coverImage || '');
+      book.updatedAt = dateText();
+      activity(state, 'Book', 'Updated cover image: ' + book.title);
       return refresh(state);
     });
   }
@@ -575,5 +588,5 @@
   }
 
   BM.utils = { pad: pad, dateText: dateText, addDays: addDays, normalize: normalize, lower: lower, same: same, clone: clone, id: id, first: first, flash: flash, takeFlash: takeFlash };
-  BM.store = { load: load, save: save, update: update, refresh: refresh, saveBook: saveBook, deleteBook: deleteBook, scrapBook: scrapBook, relocateBook: relocateBook, searchBooks: searchBooks, saveReader: saveReader, deleteReader: deleteReader, borrowBook: borrowBook, returnBook: returnBook, renewBook: renewBook, reserveBook: reserveBook, cancelReservation: cancelReservation, reset: reset, summary: summary, bookById: bookById, bookByTitle: bookByTitle, readerById: readerById, readerByName: readerByName, activeBorrowForBook: activeBorrowForBook, activeBorrowForPair: activeBorrowForPair };
+  BM.store = { load: load, save: save, update: update, refresh: refresh, saveBook: saveBook, saveBookCover: saveBookCover, deleteBook: deleteBook, scrapBook: scrapBook, relocateBook: relocateBook, searchBooks: searchBooks, saveReader: saveReader, deleteReader: deleteReader, borrowBook: borrowBook, returnBook: returnBook, renewBook: renewBook, reserveBook: reserveBook, cancelReservation: cancelReservation, reset: reset, summary: summary, bookById: bookById, bookByTitle: bookByTitle, readerById: readerById, readerByName: readerByName, activeBorrowForBook: activeBorrowForBook, activeBorrowForPair: activeBorrowForPair };
 })();

@@ -249,13 +249,22 @@ td:last-child {
 }
 
 /* Base button styles */
-.edit-btn, .delete-btn, .scrap-btn, .relocate-btn {
+.edit-btn, .delete-btn, .scrap-btn, .relocate-btn, .detail-btn {
   border: none;
   padding: 6px 10px;
   border-radius: 4px;
   cursor: pointer;
   font-size: 12px;
   flex-shrink: 0; /* Prevent buttons from being compressed */
+}
+
+/* Detail button: Teal (view profile) */
+.detail-btn {
+  background-color: #26a69a;
+  color: white;
+}
+.detail-btn:hover {
+  background-color: #1f8f84;
 }
 
 /* Edit button: Blue (primary action) */
@@ -292,6 +301,17 @@ td:last-child {
 }
 .relocate-btn:hover {
   background-color: #cf9239;
+}
+
+.bm-book-title-link {
+  color: #1565c0;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.bm-book-title-link:hover {
+  color: #0d47a1;
+  text-decoration: underline;
 }
 
 /* Remove unnecessary gaps at the end of the table */

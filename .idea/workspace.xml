@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af8d3880-32c1-487b-b8db-62673132b5d1" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/Images/Computer Network.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/CSS/auth.css" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/CSS/auth.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/CSS/book-list.css" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/CSS/book-list.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/CSS/query-books.css" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/CSS/query-books.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/books.js" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/books.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/data-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/data-tools.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/storage.js" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/storage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/JS/ui.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,7 +27,7 @@
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="44" />
+    <option name="cachedIndexableFilesCount" value="50" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -41,23 +50,23 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000051392886997" />
-      <entry key="MS500" value="1.0911208865901953" />
-      <entry key="S2" value="2.040563533176259" />
-      <entry key="S5" value="3.855343737915746" />
-      <entry key="S10" value="5.577836513024418" />
-      <entry key="S30" value="8.80862592513368" />
-      <entry key="S60" value="12.074545369976544" />
-      <entry key="M2" value="15.37961840773434" />
-      <entry key="M5" value="18.381179216388354" />
-      <entry key="M10" value="19.61886025705967" />
-      <entry key="M15" value="20.0624654577346" />
-      <entry key="M30" value="20.52262626227362" />
-      <entry key="H1" value="20.76324803214608" />
-      <entry key="H2" value="21.812054510955587" />
-      <entry key="H4" value="35.0660143702623" />
-      <entry key="D1" value="157.51353184779373" />
-      <entry key="W1" value="222.49090314564882" />
+      <entry key="MS100" value="1.0000000075545874" />
+      <entry key="MS500" value="1.0246761982798793" />
+      <entry key="S2" value="1.8000866061763705" />
+      <entry key="S5" value="4.359626384219581" />
+      <entry key="S10" value="7.180621303106023" />
+      <entry key="S30" value="10.581865546360305" />
+      <entry key="S60" value="11.92727449653893" />
+      <entry key="M2" value="13.99250427497585" />
+      <entry key="M5" value="25.239897448394846" />
+      <entry key="M10" value="42.53591622347156" />
+      <entry key="M15" value="55.14008858587328" />
+      <entry key="M30" value="79.96113257563032" />
+      <entry key="H1" value="104.02744697105783" />
+      <entry key="H2" value="122.57205939955787" />
+      <entry key="H4" value="144.61714515171417" />
+      <entry key="D1" value="275.71890876949914" />
+      <entry key="W1" value="346.19628411500526" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -79,23 +88,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9330377206468049" />
-      <entry key="MS500" value="1.0758545850022965" />
-      <entry key="S2" value="2.032910329950546" />
-      <entry key="S5" value="3.8494544938905535" />
-      <entry key="S10" value="5.573535541804893" />
-      <entry key="S30" value="8.806298269552325" />
-      <entry key="S60" value="12.072909375812955" />
-      <entry key="M2" value="15.378558799838197" />
-      <entry key="M5" value="18.38066718476732" />
-      <entry key="M10" value="19.6185860214555" />
-      <entry key="M15" value="20.062278277591417" />
-      <entry key="M30" value="20.522530411965235" />
-      <entry key="H1" value="20.7631995140515" />
-      <entry key="H2" value="21.81202873313314" />
-      <entry key="H4" value="35.065991600057295" />
-      <entry key="D1" value="157.51351267920026" />
-      <entry key="W1" value="222.49089923696295" />
+      <entry key="MS100" value="0.913831457229391" />
+      <entry key="MS500" value="1.0064423263254112" />
+      <entry key="S2" value="1.7924125237254607" />
+      <entry key="S5" value="4.352207853625336" />
+      <entry key="S10" value="7.17447145344275" />
+      <entry key="S30" value="10.57882721145351" />
+      <entry key="S60" value="11.925555460698064" />
+      <entry key="M2" value="13.991474341349155" />
+      <entry key="M5" value="25.239025655412743" />
+      <entry key="M10" value="42.53508593182888" />
+      <entry key="M15" value="55.13934696749362" />
+      <entry key="M30" value="79.96059265988043" />
+      <entry key="H1" value="104.02710246000102" />
+      <entry key="H2" value="122.57185984559497" />
+      <entry key="H4" value="144.6170292399122" />
+      <entry key="D1" value="275.718873073352" />
+      <entry key="W1" value="346.1962777490372" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -107,30 +116,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Users/QIANYUE/Documents/GitHub/CMS-2/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/Images",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "configurable.group.appearance",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JavaScript 调试.login.html.executor&quot;: &quot;Debug&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Users/QIANYUE/Documents/GitHub/CMS-2/钱玥的CMS-2/钱玥的CMS-2/CMS-2/BookManagement/Images&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Users\QIANYUE\Documents\GitHub\CMS-2\钱玥的CMS-2\钱玥的CMS-2\CMS-2\BookManagement\Images" />
@@ -151,7 +161,8 @@
       <option name="presentableId" value="Default" />
       <updated>1781417024470</updated>
       <workItem from="1781417025828" duration="37000" />
-      <workItem from="1781620621238" duration="11570000" />
+      <workItem from="1781620621238" duration="14237000" />
+      <workItem from="1781684055193" duration="1192000" />
     </task>
     <servers />
   </component>

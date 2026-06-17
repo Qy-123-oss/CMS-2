@@ -34,6 +34,7 @@
     BM.books.initBookList();
     BM.books.initAddBook();
     BM.books.initQuery();
+    BM.books.initBookDetail();
     BM.readers.init();
     BM.circulation.init();
     BM.statistics.render();

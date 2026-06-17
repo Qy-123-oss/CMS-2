@@ -1052,6 +1052,7 @@ body.bm-book-list-page:not(.bm-login-body) .bm-action-buttons {
 }
 
 body.bm-book-list-page:not(.bm-login-body) .edit-btn,
+body.bm-book-list-page:not(.bm-login-body) .detail-btn,
 body.bm-book-list-page:not(.bm-login-body) .delete-btn,
 body.bm-book-list-page:not(.bm-login-body) .scrap-btn,
 body.bm-book-list-page:not(.bm-login-body) .relocate-btn {
@@ -1072,6 +1073,10 @@ body.bm-book-list-page:not(.bm-login-body) .edit-btn {
   background: linear-gradient(135deg, #77c6ff 0%, #409eff 52%, #2d7fe2 100%);
 }
 
+body.bm-book-list-page:not(.bm-login-body) .detail-btn {
+  background: linear-gradient(135deg, #78ddd3 0%, #26a69a 52%, #16887d 100%);
+}
+
 body.bm-book-list-page:not(.bm-login-body) .delete-btn {
   background: linear-gradient(135deg, #ff9b9b 0%, #f56c6c 52%, #df5359 100%);
 }
@@ -1085,6 +1090,7 @@ body.bm-book-list-page:not(.bm-login-body) .relocate-btn {
 }
 
 body.bm-book-list-page:not(.bm-login-body) .bm-action-buttons .edit-btn,
+body.bm-book-list-page:not(.bm-login-body) .bm-action-buttons .detail-btn,
 body.bm-book-list-page:not(.bm-login-body) .bm-action-buttons .delete-btn,
 body.bm-book-list-page:not(.bm-login-body) .bm-action-buttons .scrap-btn,
 body.bm-book-list-page:not(.bm-login-body) .bm-action-buttons .relocate-btn {
@@ -1092,6 +1098,7 @@ body.bm-book-list-page:not(.bm-login-body) .bm-action-buttons .relocate-btn {
 }
 
 body.bm-book-list-page:not(.bm-login-body) .edit-btn:hover,
+body.bm-book-list-page:not(.bm-login-body) .detail-btn:hover,
 body.bm-book-list-page:not(.bm-login-body) .delete-btn:hover,
 body.bm-book-list-page:not(.bm-login-body) .scrap-btn:hover,
 body.bm-book-list-page:not(.bm-login-body) .relocate-btn:hover {

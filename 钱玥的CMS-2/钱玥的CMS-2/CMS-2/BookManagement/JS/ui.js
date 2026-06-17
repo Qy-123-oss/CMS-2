@@ -455,6 +455,16 @@
     return bookTableCell(value, index || 0);
   }
 
+  function bookTitleCell(book) {
+    var cell = el('td');
+    cell.appendChild(el('a', {
+      className: 'bm-book-title-link',
+      href: 'book-detail.html?id=' + encodeURIComponent(book.id),
+      text: book.title
+    }));
+    return cell;
+  }
+
   function dashboardBookFall() {
     if (qs('.bm-bookfall')) {
       return;
@@ -904,11 +914,12 @@
     books.forEach(function (book) {
       var row = el('tr');
       [book.title, book.author, book.isbn, book.publisher, book.location, book.status].forEach(function (value, index) {
-        row.appendChild(bookTableCell(value, index));
+        row.appendChild(index === 0 ? bookTitleCell(book) : bookTableCell(value, index));
       });
       if (actions) {
         var actionCell = el('td');
         var actionButtons = el('div', { className: 'bm-action-buttons' });
+        actionButtons.appendChild(button('View', 'detail-btn', function () { location.href = 'book-detail.html?id=' + encodeURIComponent(book.id); }));
         actionButtons.appendChild(button('Edit', 'edit-btn', function () { location.href = 'add-book.html?edit=' + encodeURIComponent(book.id); }));
         if (BM.auth && BM.auth.canDeleteBooks()) {
           actionButtons.appendChild(button('Delete', 'delete-btn', function () {

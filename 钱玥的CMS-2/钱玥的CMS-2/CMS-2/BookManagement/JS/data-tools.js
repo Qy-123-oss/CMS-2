@@ -21,6 +21,13 @@
     return JSON.parse(JSON.stringify(value));
   }
 
+  function defaultCoverImage(book) {
+    if (book && book.isbn === '9787111435623') {
+      return '../Images/Computer Network.jpg';
+    }
+    return '';
+  }
+
   function normalizeBook(book, index) {
     var payload = rules.normalizeBookPayload(book || {});
     payload.id = book.id || BM.utils.id('B', [], 'id') + '-' + index;
@@ -28,6 +35,7 @@
     payload.borrowCount = Number(book.borrowCount || 0);
     payload.createdAt = book.createdAt || BM.utils.dateText();
     payload.updatedAt = BM.utils.dateText();
+    payload.coverImage = book.coverImage || defaultCoverImage(payload);
     return payload;
   }
 
