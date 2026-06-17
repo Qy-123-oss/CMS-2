@@ -36,6 +36,23 @@
     return node;
   }
 
+  function svgEl(tag, props, children) {
+    var node = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    props = props || {};
+    Object.keys(props).forEach(function (key) {
+      var value = props[key];
+      if (key === 'text') {
+        node.textContent = value;
+      } else if (typeof value !== 'undefined' && value !== null) {
+        node.setAttribute(key, value);
+      }
+    });
+    (children || []).forEach(function (child) {
+      node.appendChild(child);
+    });
+    return node;
+  }
+
   function clear(node) {
     if (!node) {
       return;
@@ -282,6 +299,140 @@
       ]);
     })));
     return chart;
+  }
+
+  function metricSvgPanel(title, note, chartNode, tone) {
+    return el('section', { className: 'bm-svg-chart-panel bm-svg-chart-panel-' + (tone || 'blue') }, [
+      el('div', { className: 'bm-chart-title' }, [
+        el('h3', { text: title }),
+        el('span', { text: note })
+      ]),
+      chartNode
+    ]);
+  }
+
+  function svgText(x, y, text, className, anchor) {
+    return svgEl('text', {
+      x: x,
+      y: y,
+      class: className || '',
+      'text-anchor': anchor || 'middle'
+    }, [document.createTextNode(String(text))]);
+  }
+
+  function verticalBarChart(title, rows, tone) {
+    var width = 520;
+    var height = 250;
+    var top = 22;
+    var right = 18;
+    var bottom = 58;
+    var left = 42;
+    var chartWidth = width - left - right;
+    var chartHeight = height - top - bottom;
+    var max = rows.reduce(function (highest, row) {
+      return Math.max(highest, Number(row.value || 0));
+    }, 0) || 1;
+    var gap = 12;
+    var barWidth = rows.length ? Math.max(18, (chartWidth - gap * (rows.length - 1)) / rows.length) : chartWidth;
+    var svg = svgEl('svg', { class: 'bm-svg-chart bm-column-chart', viewBox: '0 0 ' + width + ' ' + height, role: 'img', 'aria-label': title });
+    var grid;
+
+    svg.appendChild(svgEl('line', { class: 'bm-svg-axis', x1: left, y1: height - bottom, x2: width - right, y2: height - bottom }));
+    svg.appendChild(svgEl('line', { class: 'bm-svg-axis', x1: left, y1: top, x2: left, y2: height - bottom }));
+
+    for (grid = 0; grid <= 4; grid += 1) {
+      var y = top + chartHeight - (chartHeight * grid / 4);
+      svg.appendChild(svgEl('line', { class: 'bm-svg-grid-line', x1: left, y1: y, x2: width - right, y2: y }));
+      svg.appendChild(svgText(left - 8, y + 4, Math.round(max * grid / 4), 'bm-svg-tick', 'end'));
+    }
+
+    rows.forEach(function (row, index) {
+      var value = Number(row.value || 0);
+      var barHeight = (value / max) * chartHeight;
+      var x = left + index * (barWidth + gap);
+      var y = top + chartHeight - barHeight;
+      svg.appendChild(svgEl('rect', { class: 'bm-svg-bar', x: x, y: y, width: barWidth, height: barHeight, rx: 5 }));
+      svg.appendChild(svgText(x + barWidth / 2, y - 7, value, 'bm-svg-value'));
+      svg.appendChild(svgText(x + barWidth / 2, height - bottom + 22, row.label, 'bm-svg-label'));
+    });
+
+    return metricSvgPanel(title, rows.length + ' categories', svg, tone);
+  }
+
+  function lineChart(title, rows, tone) {
+    var width = 520;
+    var height = 250;
+    var top = 24;
+    var right = 24;
+    var bottom = 54;
+    var left = 42;
+    var chartWidth = width - left - right;
+    var chartHeight = height - top - bottom;
+    var max = rows.reduce(function (highest, row) {
+      return Math.max(highest, Number(row.value || 0));
+    }, 0) || 1;
+    var svg = svgEl('svg', { class: 'bm-svg-chart bm-line-chart', viewBox: '0 0 ' + width + ' ' + height, role: 'img', 'aria-label': title });
+    var points = [];
+    var grid;
+
+    svg.appendChild(svgEl('line', { class: 'bm-svg-axis', x1: left, y1: height - bottom, x2: width - right, y2: height - bottom }));
+    svg.appendChild(svgEl('line', { class: 'bm-svg-axis', x1: left, y1: top, x2: left, y2: height - bottom }));
+
+    for (grid = 0; grid <= 4; grid += 1) {
+      var y = top + chartHeight - (chartHeight * grid / 4);
+      svg.appendChild(svgEl('line', { class: 'bm-svg-grid-line', x1: left, y1: y, x2: width - right, y2: y }));
+      svg.appendChild(svgText(left - 8, y + 4, Math.round(max * grid / 4), 'bm-svg-tick', 'end'));
+    }
+
+    rows.forEach(function (row, index) {
+      var ratio = rows.length > 1 ? index / (rows.length - 1) : 0.5;
+      var x = left + chartWidth * ratio;
+      var y = top + chartHeight - (Number(row.value || 0) / max) * chartHeight;
+      points.push(x + ',' + y);
+      svg.appendChild(svgEl('circle', { class: 'bm-svg-line-dot', cx: x, cy: y, r: 5 }));
+      svg.appendChild(svgText(x, y - 11, row.value, 'bm-svg-value'));
+      svg.appendChild(svgText(x, height - bottom + 22, row.label, 'bm-svg-label'));
+    });
+    svg.insertBefore(svgEl('polyline', { class: 'bm-svg-line', points: points.join(' ') }), svg.querySelector('.bm-svg-line-dot'));
+
+    return metricSvgPanel(title, rows.length + ' periods', svg, tone);
+  }
+
+  function scatterChart(title, rows, tone) {
+    var width = 520;
+    var height = 250;
+    var top = 24;
+    var right = 28;
+    var bottom = 54;
+    var left = 48;
+    var chartWidth = width - left - right;
+    var chartHeight = height - top - bottom;
+    var maxX = rows.reduce(function (highest, row) { return Math.max(highest, Number(row.x || 0)); }, 0) || 1;
+    var maxY = rows.reduce(function (highest, row) { return Math.max(highest, Number(row.y || 0)); }, 0) || 1;
+    var svg = svgEl('svg', { class: 'bm-svg-chart bm-scatter-chart', viewBox: '0 0 ' + width + ' ' + height, role: 'img', 'aria-label': title });
+    var grid;
+
+    svg.appendChild(svgEl('line', { class: 'bm-svg-axis', x1: left, y1: height - bottom, x2: width - right, y2: height - bottom }));
+    svg.appendChild(svgEl('line', { class: 'bm-svg-axis', x1: left, y1: top, x2: left, y2: height - bottom }));
+
+    for (grid = 0; grid <= 4; grid += 1) {
+      var xGrid = left + chartWidth * grid / 4;
+      var yGrid = top + chartHeight - chartHeight * grid / 4;
+      svg.appendChild(svgEl('line', { class: 'bm-svg-grid-line', x1: xGrid, y1: top, x2: xGrid, y2: height - bottom }));
+      svg.appendChild(svgEl('line', { class: 'bm-svg-grid-line', x1: left, y1: yGrid, x2: width - right, y2: yGrid }));
+    }
+
+    rows.forEach(function (row) {
+      var x = left + (Number(row.x || 0) / maxX) * chartWidth;
+      var y = top + chartHeight - (Number(row.y || 0) / maxY) * chartHeight;
+      var radius = Math.max(6, Math.min(15, 6 + Number(row.size || 0) * 2));
+      svg.appendChild(svgEl('circle', { class: 'bm-svg-scatter-dot', cx: x, cy: y, r: radius }));
+      svg.appendChild(svgText(x, y - radius - 6, row.label, 'bm-svg-label'));
+    });
+    svg.appendChild(svgText(left + chartWidth / 2, height - 12, 'Returned records', 'bm-svg-axis-label'));
+    svg.appendChild(svgText(16, top + chartHeight / 2, 'Active loans', 'bm-svg-axis-label bm-svg-axis-label-y'));
+
+    return metricSvgPanel(title, rows.length + ' readers', svg, tone);
   }
 
   function bookTableCell(value, index) {
@@ -664,6 +815,28 @@
     var popularRows = state.books.slice().sort(function (a, b) { return Number(b.borrowCount || 0) - Number(a.borrowCount || 0); }).slice(0, 5).map(function (book) {
       return [book.title, book.borrowCount || 0, book.available || 0];
     });
+    var columnRows = typeRows.slice().sort(function (a, b) {
+      return Number(b[1] || 0) - Number(a[1] || 0);
+    }).slice(0, 6).map(function (row) {
+      return { label: String(row[0]).replace(/\s+/g, ' ').substring(0, 12), value: Number(row[1] || 0) };
+    });
+    var trendRows = (BM.businessReports ? BM.businessReports.circulationTrend(state) : []).slice(-6).map(function (row) {
+      return { label: row.month || 'Unknown', value: Number(row.borrowed || 0) };
+    });
+    if (!trendRows.length) {
+      trendRows = [{ label: 'No Data', value: 0 }];
+    }
+    var readerPoints = (BM.businessReports ? BM.businessReports.readerActivity(state) : []).slice(0, 8).map(function (row) {
+      return {
+        label: row.readerName,
+        x: Number(row.returned || 0),
+        y: Number(row.borrowed || 0) + Number(row.overdue || 0),
+        size: Number(row.reservations || 0) + Number(row.overdue || 0)
+      };
+    });
+    if (!readerPoints.length) {
+      readerPoints = [{ label: 'No Reader', x: 0, y: 0, size: 0 }];
+    }
     var overdueRows = state.borrowRecords.filter(function (record) { return record.status === 'Overdue'; }).slice(0, 5).map(function (record) {
       return [record.bookTitle, record.readerName, record.dueDate];
     });
@@ -687,6 +860,12 @@
       return { label: row[0], value: row[1] };
     }), 'violet'));
     panel.appendChild(chartGrid);
+
+    panel.appendChild(el('div', { className: 'bm-advanced-chart-grid' }, [
+      verticalBarChart('Category Inventory Bars', columnRows, 'blue'),
+      lineChart('Monthly Borrowing Trend', trendRows, 'green'),
+      scatterChart('Reader Activity Scatter', readerPoints, 'violet')
+    ]));
 
     split.appendChild(miniTable('Inventory by Type', ['Type', 'Copies', 'Can Borrow', 'Out'], typeRows, {
       1: { type: 'bar', tone: 'blue', denominator: function () { return summary.totalInventory; } },

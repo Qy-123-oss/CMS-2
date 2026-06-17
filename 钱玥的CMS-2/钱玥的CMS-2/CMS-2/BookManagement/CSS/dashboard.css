@@ -270,6 +270,106 @@
   text-align: right;
 }
 
+.bm-advanced-chart-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+  gap: 16px;
+  margin: 6px 0 20px 0;
+}
+
+.bm-svg-chart-panel {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid rgba(148, 184, 197, 0.24);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.94) 0%, rgba(244, 251, 255, 0.86) 100%);
+  box-shadow: 0 14px 30px rgba(57, 103, 119, 0.08);
+  box-sizing: border-box;
+}
+
+.bm-svg-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.bm-svg-axis {
+  stroke: rgba(82, 112, 124, 0.5);
+  stroke-width: 1.4;
+}
+
+.bm-svg-grid-line {
+  stroke: rgba(173, 199, 210, 0.42);
+  stroke-width: 1;
+}
+
+.bm-svg-tick,
+.bm-svg-label,
+.bm-svg-value,
+.bm-svg-axis-label {
+  fill: #607d8b;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.bm-svg-value {
+  fill: #253b44;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.bm-svg-label {
+  fill: #4f6874;
+}
+
+.bm-svg-axis-label {
+  fill: #78909c;
+  font-size: 11px;
+}
+
+.bm-svg-bar {
+  fill: #409eff;
+  filter: drop-shadow(0 6px 8px rgba(64, 158, 255, 0.18));
+}
+
+.bm-svg-chart-panel-blue .bm-svg-bar {
+  fill: #409eff;
+}
+
+.bm-svg-line {
+  fill: none;
+  stroke: #2aa66f;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 6px 8px rgba(42, 166, 111, 0.18));
+}
+
+.bm-svg-line-dot {
+  fill: #ffffff;
+  stroke: #2aa66f;
+  stroke-width: 3;
+}
+
+.bm-svg-scatter-dot {
+  fill: rgba(126, 87, 194, 0.76);
+  stroke: rgba(255, 255, 255, 0.92);
+  stroke-width: 3;
+  filter: drop-shadow(0 7px 12px rgba(126, 87, 194, 0.24));
+}
+
+.bm-svg-chart-panel-violet {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.94) 0%, rgba(247, 242, 255, 0.9) 100%);
+}
+
+.bm-svg-chart-panel-green {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.94) 0%, rgba(239, 252, 244, 0.9) 100%);
+}
+
 .bm-data-panel {
   background: #ffffff;
   border: 1px solid #e4e7ed;
@@ -499,6 +599,10 @@
   }
 
   .bm-chart-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bm-advanced-chart-grid {
     grid-template-columns: 1fr;
   }
 
